@@ -181,7 +181,7 @@ export default function PartnerProgram() {
     <div className="bg-white min-h-screen pt-24">
       {/* ─── Hero Section ─── */}
       <section className="max-w-7xl mx-auto px-6 pt-8 pb-20">
-        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
+        <div className="grid lg:grid-cols-[1.6fr_1fr] gap-1 items-center">
           {/* Left Column */}
           <div className="space-y-6">
             <span className="text-[#E29A52] text-[11px] font-semibold tracking-widest uppercase block">
@@ -189,13 +189,13 @@ export default function PartnerProgram() {
             </span>
             <div>
               <h1
-                className="text-[40px] md:text-[54px] text-[#1a1a1a] leading-[1.08] tracking-tight"
+                className="text-[44px] md:text-[48px] text-[#1a1a1a] leading-[1.08] mb-2 tracking-tight"
                 style={{ fontFamily: "'PT Serif', Georgia, serif" }}
               >
                 The depth your programme deserves
               </h1>
               <h1
-                className="text-[40px] md:text-[54px] leading-[1.08] tracking-tight text-[#2F4A2F]"
+                className="text-[44px] md:text-[48px] leading-[1.08] tracking-tight text-[#2F4A2F]"
                 style={{
                   fontFamily: "'Liberation Serif', 'Times New Roman', Times, serif",
                   fontStyle: 'italic',
