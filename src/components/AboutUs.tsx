@@ -136,16 +136,16 @@ export default function AboutUs() {
                 We're a team of operators, designers, and strategists who have built from inside the problems we now help founders solve.
               </p>
 
-              <div className="flex flex-wrap gap-3 pt-1">
+              <div className="flex flex-col sm:flex-row gap-3 pt-1 w-full sm:w-auto">
                 <button 
                   onClick={() => scrollToSection(founderStoryRef)}
-                  className="bg-[#2F4A2F] text-white text-[13px] font-semibold px-6 py-3 rounded-lg hover:bg-[#1F3A1F] transition-colors shadow-sm cursor-pointer"
+                  className="bg-[#2F4A2F] text-white text-[13px] font-semibold px-6 py-3 rounded-lg hover:bg-[#1F3A1F] transition-colors shadow-sm cursor-pointer w-full sm:w-auto text-center justify-center"
                 >
                   Founder Story
                 </button>
                 <button 
                   onClick={() => scrollToSection(teamRef)}
-                  className="border border-gray-200 bg-gray-50/30 text-gray-700 text-[13px] font-semibold px-6 py-3 rounded-lg hover:border-[#2F4A2F] hover:text-[#2F4A2F] transition-colors cursor-pointer"
+                  className="border border-gray-200 bg-gray-50/30 text-gray-700 text-[13px] font-semibold px-6 py-3 rounded-lg hover:border-[#2F4A2F] hover:text-[#2F4A2F] transition-colors cursor-pointer w-full sm:w-auto text-center justify-center"
                 >
                   Meet Our Team
                 </button>

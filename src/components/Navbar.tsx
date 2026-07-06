@@ -108,7 +108,7 @@ export default function Navbar() {
           })}
           <Link
             to="/contact"
-            className="mt-2 text-[12px] font-medium text-white bg-[#2F4A2F] px-4 py-2 rounded w-fit"
+            className="mt-2 text-[12px] font-medium text-white bg-[#2F4A2F] py-2.5 rounded-lg w-full text-center shadow-sm"
             onClick={() => setOpen(false)}
           >
             Get in touch

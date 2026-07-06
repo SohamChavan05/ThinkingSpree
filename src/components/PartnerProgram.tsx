@@ -397,6 +397,7 @@ export default function PartnerProgram() {
       </section>
 
       {/* ─── Section 01: Universities & Institutions ─── */}
+      <div className="bg-[#FBFDF9] w-full">
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
@@ -544,9 +545,6 @@ export default function PartnerProgram() {
 
       {/* ─── Section 02: Incubators & Accelerators ─── */}
       <section className="max-w-7xl mx-auto px-6 py-20 bg-white relative overflow-hidden">
-        <span className="text-[#E29A52] text-[11px] font-semibold tracking-widest uppercase block mb-4">
-          ✦ INCUBATORS & ACCELERATORS
-        </span>
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
             02
@@ -641,7 +639,7 @@ export default function PartnerProgram() {
             {/* Steps Timeline Navigation */}
             <div className="relative mb-10 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200">
               {/* Dotted horizontal connector line */}
-              <div className="absolute top-[21px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
+              <div className="absolute top-[26px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
 
               <div className="flex md:justify-between items-start gap-8 min-w-[760px] px-2 relative z-10">
                 {partnerStageSteps.map((step, idx) => {
@@ -654,7 +652,7 @@ export default function PartnerProgram() {
                     >
                       {/* Step Circle */}
                       <div
-                        className={`w-[42px] h-[42px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${isActive
+                        className={`w-[52px] h-[52px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${isActive
                             ? 'bg-[#2F4A2F] text-white shadow-sm ring-4 ring-[#2F4A2F]/10'
                             : 'bg-white border border-gray-200 text-gray-500 hover:border-[#2F4A2F] hover:text-[#2F4A2F]'
                           }`}
@@ -727,12 +725,11 @@ export default function PartnerProgram() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* ─── Section 03: VCs & MSME Facilitators ─── */}
-      <section className="max-w-7xl mx-auto px-6 py-20 bg-white relative overflow-hidden">
-        <span className="text-[#E29A52] text-[11px] font-semibold tracking-widest uppercase block mb-4">
-          ✦ VCS & MSME FACILITATORS
-        </span>
+      <div className="bg-[#FBFDF9] w-full">
+      <section className="max-w-7xl mx-auto px-6 py-20 relative overflow-hidden">
         <div className="flex items-center gap-3 mb-2">
           <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
             03
@@ -1136,6 +1133,7 @@ export default function PartnerProgram() {
           )}
         </div>
       </section>
+      </div>
 
       {/* ─── Final CTA Section ─── */}
       <FinalCTA />

@@ -18,8 +18,8 @@ export const caseStudiesList: CaseStudy[] = [
     category: 'Product & PMF',
     date: 'May 13, 2025',
     title: 'Twenty customer interviews and what we actually learned',
-    description: "We run customer discovery in every Growth Strategy 1-Sprint. After hundreds of sessions, here's what most founders get wrong – and the one question that change everything.Before you retrain the team or rebuild the pipeline, answer these. Most founders are fixing the wrong thing – and it shows up in their close rate.",
-    image: '/whiteboard_sticky_notes.png',
+    description: "We run customer discovery in every Growth Strategy 1-Sprint. After hundreds of sessions, here's what most founders get wrong – and the one question that change everything.",
+    image: '/CaseStudy/casestudyImage1.png',
     featured: true,
   },
   {
@@ -27,8 +27,8 @@ export const caseStudiesList: CaseStudy[] = [
     category: 'B2B Sales',
     date: 'May 12, 2025',
     title: 'The five questions that expose a broken sales motion',
-    description: 'Before you retrain the team or rebuild the pipeline, answer these. Most founders are fixing the wrong thing – and it shows up in their close rate.Before you retrain the team or rebuild the pipeline, answer these. Most founders are fixing the wrong thing – and it shows up in their close rate.',
-    image: '/sales_pipeline_whiteboard.png',
+    description: 'Before you retrain the team or rebuild the pipeline, answer these. Most founders are fixing the wrong thing – and it shows up in their close rate.',
+    image: '/CaseStudy/casestudyImage2.png',
     featured: false,
   },
   {
@@ -36,8 +36,8 @@ export const caseStudiesList: CaseStudy[] = [
     category: 'Pricing',
     date: 'May 12, 2025',
     title: "Charging what you're worth: the founder's pricing psychology problem",
-    description: "Underpricing isn't humility – it's a positioning signal. We break down the three mental models that keep founders stuck at the wrong price point.Before you retrain the team or rebuild the pipeline, answer these. Most founders are fixing the wrong thing – and it shows up in their close rate.",
-    image: '/strategy_documents.png',
+    description: "Underpricing isn't humility – it's a positioning signal. We break down the three mental models that keep founders stuck at the wrong price point.",
+    image: '/CaseStudy/casestudyImage3.png',
     featured: false,
   },
 ];

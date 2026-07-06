@@ -17,16 +17,16 @@ export default function FinalCTA() {
           </div>
 
           {/* Right CTAs */}
-          <div className="flex items-center gap-4 shrink-0">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto shrink-0">
             <Link 
               to="/contact" 
-              className="bg-white text-[#1f3a1f] text-[14px] font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors inline-block text-center"
+              className="bg-white text-[#1f3a1f] text-[14px] font-semibold px-6 py-3 rounded-lg hover:bg-white/90 transition-colors text-center w-full sm:w-auto"
             >
               Get In Touch
             </Link>
             <Link 
               to="/offerings" 
-              className="border border-white/30 text-white text-[14px] font-semibold px-6 py-3 rounded-lg hover:bg-white/10 transition-colors inline-block text-center"
+              className="border border-white/30 text-white text-[14px] font-semibold px-6 py-3 rounded-lg hover:bg-white/10 transition-colors text-center w-full sm:w-auto"
             >
               Explore Offerings &rarr;
             </Link>

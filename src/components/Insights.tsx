@@ -59,28 +59,6 @@ export const insightsArticles: Article[] = [
     authorInitials: 'AC',
     authorBg: 'bg-amber-100',
   },
-  {
-    slug: 'founder-pricing-psychology-2',
-    category: 'Pricing',
-    date: 'May 12, 2025',
-    readTime: '7 min',
-    title: "Charging what you're worth: the founder's pricing psychology problem",
-    description: "Underpricing isn't humility – it's a positioning signal. We break down the three mental models that keep founders stuck at the wrong price point.",
-    author: 'Shreya Mehta',
-    authorInitials: 'SM',
-    authorBg: 'bg-[#EEF8E6]',
-  },
-  {
-    slug: 'twenty-customer-interviews-learned-2',
-    category: 'Product & PMF',
-    date: 'May 12, 2025',
-    readTime: '7 min',
-    title: 'Twenty customer interviews and what we actually learned',
-    description: "We run customer discovery in every Growth Strategy T-Sprint. After hundreds of sessions, here's what most founders get wrong — and the one question that change everything.",
-    author: 'Editorial',
-    authorInitials: 'ED',
-    authorBg: 'bg-gray-100',
-  },
 ];
 
 const categories = [

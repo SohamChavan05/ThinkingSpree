@@ -189,7 +189,7 @@ export default function Offerings() {
             {/* Steps Navigation - Scrollable on mobile */}
             <div className="relative mb-10 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200">
               {/* Connecting line */}
-              <div className="absolute top-[21px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
+              <div className="absolute top-[26px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
 
               <div className="flex md:justify-between items-start gap-8 min-w-[760px] px-2 relative z-10">
                 {earlyStageSteps.map((step, idx) => {
@@ -200,9 +200,8 @@ export default function Offerings() {
                       onClick={() => setActiveStepIndex(idx)}
                       className="flex flex-col items-center text-center focus:outline-none group/btn cursor-pointer w-24 shrink-0"
                     >
-                      {/* Step Circle */}
                       <div
-                        className={`w-[42px] h-[42px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${
+                        className={`w-[52px] h-[52px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${
                           isActive
                             ? 'bg-[#2F4A2F] text-white shadow-sm ring-4 ring-[#2F4A2F]/10'
                             : 'bg-white border border-gray-200 text-[#1a1a1a] group-hover/btn:border-[#2F4A2F] group-hover/btn:text-[#2F4A2F]'

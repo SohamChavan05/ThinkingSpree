@@ -27,6 +27,24 @@ import Insights from './components/Insights';
 import InsightDetail from './components/InsightDetail';
 import CaseStudiesList from './components/CaseStudiesList';
 import CaseStudyDetail from './components/CaseStudyDetail';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsOfService from './components/TermsOfService';
+
+function PrivacyPage() {
+  return (
+    <>
+      <PrivacyPolicy />
+    </>
+  );
+}
+
+function TermsPage() {
+  return (
+    <>
+      <TermsOfService />
+    </>
+  );
+}
 
 function LandingPage() {
   return (
@@ -125,6 +143,8 @@ function App() {
             <Route path="/insights/:slug" element={<InsightDetailPage />} />
             <Route path="/case-studies" element={<CaseStudiesListPage />} />
             <Route path="/case-studies/:slug" element={<CaseStudyDetailPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
           </Routes>
         </main>
         <Footer />
@@ -133,4 +153,5 @@ function App() {
   );
 }
 
+// Trigger Vite HMR rebuild
 export default App;

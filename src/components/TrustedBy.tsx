@@ -28,13 +28,13 @@ export default function TrustedBy() {
           </div>
 
           {/* Right - two strips */}
-          <div className="flex-1 border-l border-gray-100 pl-8 space-y-5">
+          <div className="flex-1 border-t md:border-t-0 md:border-l border-gray-100 pt-8 md:pt-0 pl-0 md:pl-8 space-y-5">
             {/* STARTUPS strip */}
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
               <span className="text-[10px] font-semibold text-gray-400 tracking-widest uppercase shrink-0 w-16">
                 Startups
               </span>
-              <div className="flex items-center gap-8 flex-wrap">
+              <div className="flex items-center gap-5 sm:gap-8 flex-wrap">
                 {startups.map((startup) => (
                   <img
                     key={startup.name}
@@ -50,11 +50,11 @@ export default function TrustedBy() {
             <div className="border-t border-gray-100" />
 
             {/* PARTNERS strip */}
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
               <span className="text-[10px] font-semibold text-gray-400 tracking-widest uppercase shrink-0 w-16">
                 Partners
               </span>
-              <div className="flex items-center gap-12 flex-wrap">
+              <div className="flex items-center gap-6 sm:gap-12 flex-wrap">
                 {partners.map((partner) => (
                   <img
                     key={partner.name}

@@ -78,7 +78,7 @@ export default function ForGrowth() {
           <span className="text-[#E29A52] text-[11px] font-semibold tracking-widest uppercase">
             ✦ HOW WE WORK
           </span>
-          <div className='flex justify-between'>
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
             <div>
               <h2 className="mt-3 text-[36px] md:text-[44px] text-[#1a1a1a] leading-tight" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
                 For growth -
@@ -160,14 +160,14 @@ export default function ForGrowth() {
               </div>
 
               {/* CTAs */}
-              <div className="relative z-10 flex items-center justify-between pt-2 mt-auto">
+              <div className="relative z-10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between pt-2 mt-auto w-full">
                 <Link
                   to="/offerings"
-                  className="text-[13px] font-semibold text-[#E29A52] hover:text-[#d98544] transition-colors"
+                  className="text-[13px] font-semibold text-[#E29A52] hover:text-[#d98544] transition-colors text-center sm:text-left"
                 >
                   {stage.cta}
                 </Link>
-                <button className="bg-[#E29A52] hover:bg-[#d98544] text-white text-[12px] font-bold px-6 py-3 rounded-lg shadow-sm transition-all duration-200">
+                <button className="bg-[#E29A52] hover:bg-[#d98544] text-white text-[12px] font-bold px-6 py-3 rounded-lg shadow-sm transition-all duration-200 w-full sm:w-auto text-center">
                   {stage.downloadCta}
                 </button>
               </div>
