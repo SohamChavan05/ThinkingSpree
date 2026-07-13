@@ -12,7 +12,7 @@ export default function CaseStudies() {
               <span className="text-[11px] text-brand-green font-bold tracking-widest uppercase mb-4">
                 CASE STUDY
               </span>
-              <h2 className="text-[28px] md:text-[34px] font-medium text-[#1a1a1a] leading-tight">
+              <h2 className="text-[28px] md:text-[34px] font-medium` text-[#1a1a1a] leading-tight">
                 Two years stuck at ₹12 Cr, ₹18 Cr in 3 months.
               </h2>
               <Link
