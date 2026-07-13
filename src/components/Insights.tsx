@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import FinalCTA from './FinalCTA';
 
@@ -16,45 +16,78 @@ export interface Article {
 
 export const insightsArticles: Article[] = [
   {
-    slug: 'five-questions-broken-sales',
-    category: 'B2B Sales',
-    date: 'May 12, 2025',
-    readTime: '7 min',
-    title: 'The five questions that expose a broken sales motion',
-    description: 'Before you retrain the team or rebuild the pipeline, answer these. Most founders are fixing the wrong thing — and it shows up in their close rate.',
+    slug: 'why-most-startups-fail-at-scale',
+    category: 'Growth Strategy',
+    date: 'July 10, 2026',
+    readTime: '8 min',
+    title: 'Why Most Startups Fail at Scale',
+    description: 'Growth stalls, margins shrink, teams become overwhelmed. Most startups that struggle do so because their business model was never designed to scale.',
+    author: 'Aashish Chandra',
+    authorInitials: 'AC',
+    authorBg: 'bg-amber-100',
+  },
+  {
+    slug: 'consumer-insights-vs-market-research',
+    category: 'Product & PMF',
+    date: 'July 8, 2026',
+    readTime: '6 min',
+    title: 'Consumer Insights vs. Market Research',
+    description: 'Most startups know more about their market than their actual customers. We examine the distinction between market size statistics and true consumer behavior.',
     author: 'Rahul Krishnamurthy',
     authorInitials: 'RK',
     authorBg: 'bg-amber-100',
   },
   {
-    slug: 'founder-pricing-psychology',
-    category: 'Pricing',
-    date: 'May 12, 2025',
+    slug: 'from-idea-to-10x',
+    category: 'Growth Strategy',
+    date: 'July 5, 2026',
     readTime: '7 min',
-    title: "Charging what you're worth: the founder's pricing psychology problem",
-    description: "Underpricing isn't humility – it's a positioning signal. We break down the three mental models that keep founders stuck at the wrong price point.",
+    title: 'From Idea to 10X',
+    description: 'How design thinking moves beyond wireframes and UI components to reshape business strategy, question assumptions, and reduce risk.',
     author: 'Shreya Mehta',
     authorInitials: 'SM',
     authorBg: 'bg-[#EEF8E6]',
   },
   {
-    slug: 'twenty-customer-interviews-learned',
-    category: 'Product & PMF',
-    date: 'May 12, 2025',
-    readTime: '7 min',
-    title: 'Twenty customer interviews and what we actually learned',
-    description: "We run customer discovery in every Growth Strategy T-Sprint. After hundreds of sessions, here's what most founders get wrong — and the one question that change everything.",
+    slug: 'the-90-day-sprint',
+    category: 'Founder Mindset',
+    date: 'July 1, 2026',
+    readTime: '6 min',
+    title: 'The 90-Day Sprint',
+    description: 'Activity and progress are not the same thing. Learn how a compressed, 90-day execution cycle unlocks clarity and sustainable product-market fit.',
     author: 'Editorial',
     authorInitials: 'ED',
     authorBg: 'bg-gray-100',
   },
   {
-    slug: 'why-gtm-isnt-broken',
+    slug: 'building-purposeful-businesses',
+    category: 'Team & Culture',
+    date: 'June 28, 2026',
+    readTime: '7 min',
+    title: 'Building Purposeful Businesses',
+    description: 'Why profit and purpose are not opposing forces. The strongest businesses don\'t grow despite their purpose — they grow because of it.',
+    author: 'Shreya Mehta',
+    authorInitials: 'SM',
+    authorBg: 'bg-[#EEF8E6]',
+  },
+  {
+    slug: 'what-luxury-and-deep-tech-startups-have-in-common',
+    category: 'Founder Mindset',
+    date: 'June 25, 2026',
+    readTime: '8 min',
+    title: 'What Luxury and Deep-Tech Startups Have in Common',
+    description: 'Whether you are selling premium senior living or advanced industrial robotics, the challenge is the same: helping customers build belief before they buy.',
+    author: 'Rahul Krishnamurthy',
+    authorInitials: 'RK',
+    authorBg: 'bg-amber-100',
+  },
+  {
+    slug: 'the-ecosystem-advantage',
     category: 'Growth Strategy',
-    date: 'May 10, 2025',
-    readTime: '5 min',
-    title: "Why your GTM isn't broken — your clarity is",
-    description: "Every week, a founder tells us their GTM is the problem. The deck is sharp. The team is willing. But the pipeline is quiet. After 1,500+ T-Sprints, we've learned that most go-to-market failures trace back to one thing: the team doesn't actually agree on who they're selling to and why now.",
+    date: 'June 20, 2026',
+    readTime: '7 min',
+    title: 'The Ecosystem Advantage',
+    description: 'Why partnership strategy is a business model decision, not a networking activity. How to design a mutually beneficial ecosystem at every stage.',
     author: 'Aashish Chandra',
     authorInitials: 'AC',
     authorBg: 'bg-amber-100',
@@ -64,22 +97,35 @@ export const insightsArticles: Article[] = [
 const categories = [
   'All',
   'Growth Strategy',
-  'B2B Sales',
-  'Fundraising',
   'Product & PMF',
-  'Pricing',
-  'Team & Culture',
   'Founder Mindset',
+  'Team & Culture',
 ];
 
 export default function Insights() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeFeaturedIndex, setActiveFeaturedIndex] = useState(0);
 
+  // Auto-scroll logic for featured blog slider (cycles every 5s, resets timer on manual click)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveFeaturedIndex((prevIndex) => (prevIndex + 1) % 3);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [activeFeaturedIndex]);
+
   // Filtered articles
   const filteredArticles = selectedCategory === 'All'
     ? insightsArticles
     : insightsArticles.filter(art => art.category === selectedCategory);
+
+  const featuredArticle = insightsArticles[activeFeaturedIndex] || insightsArticles[0];
+  const featuredImages = [
+    '/whiteboard_sticky_notes.png',
+    '/strategy_documents.png',
+    '/whiteboard_sticky_notes.png',
+  ];
+  const featuredImg = featuredImages[activeFeaturedIndex % featuredImages.length];
 
   return (
     <div className="min-h-screen pt-20">
@@ -99,7 +145,7 @@ export default function Insights() {
           {/* Left - Image */}
           <div className="h-64 lg:h-auto overflow-hidden relative">
             <img
-              src="/whiteboard_sticky_notes.png"
+              src={featuredImg}
               alt="Whiteboard with sticky notes"
               className="w-full h-100 object-cover"
             />
@@ -119,30 +165,30 @@ export default function Insights() {
             <div className="space-y-4 relative z-10">
               <div className="flex items-center gap-3">
                 <span className="bg-[#2F4A2F] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-[2px] uppercase tracking-wider">
-                  GROWTH STRATEGY
+                  {featuredArticle.category}
                 </span>
-                <span className="text-[12px] text-gray-400">May 10, 2025</span>
+                <span className="text-[12px] text-gray-400">{featuredArticle.date}</span>
                 <span className="text-[12px] text-gray-400">•</span>
-                <span className="text-[12px] text-gray-400">5 min read</span>
+                <span className="text-[12px] text-gray-400">{featuredArticle.readTime} read</span>
               </div>
 
               <h2
                 className="text-[26px] md:text-[34px] font-bold text-[#1a1a1a] leading-tight group-hover:text-[#2F4A2F] transition-colors"
                 style={{ fontFamily: "'PT Serif', Georgia, serif" }}
               >
-                <Link to="/insights/why-gtm-isnt-broken">
-                  Why your GTM isn't broken — your clarity is
+                <Link to={`/insights/${featuredArticle.slug}`}>
+                  {featuredArticle.title}
                 </Link>
               </h2>
 
               <p className="text-[13px] md:text-[14px] text-[#555555] leading-relaxed font-light">
-                Every week, a founder tells us their GTM is the problem. The deck is sharp. The team is willing. But the pipeline is quiet. After 1,500+ T-Sprints, we've learned that most go-to-market failures trace back to one thing: the team doesn't actually agree on who they're selling to and why now. Here's the diagnostic we use — and how to fix it in a single sprint.
+                {featuredArticle.description}
               </p>
             </div>
 
             <div className="pt-6 relative z-10">
               <Link
-                to="/insights/why-gtm-isnt-broken"
+                to={`/insights/${featuredArticle.slug}`}
                 className="text-[#1a1a1a] hover:text-[#2F4A2F] text-[13px] font-semibold flex items-center gap-1.5 transition-colors group-link"
               >
                 Read the full piece
