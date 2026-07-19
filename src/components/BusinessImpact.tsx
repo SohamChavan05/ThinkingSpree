@@ -5,9 +5,9 @@ const stats = [
     sub: 'Across stages, sectors, and growth journeys.',
   },
   {
-    value: '96+',
-    label: 'Cohorts',
-    sub: 'Turning complexity into clear next moves.',
+    value: '100+',
+    label: 'Cohorts Supported',
+    sub: 'Across incubators and accelerators.',
   },
   {
     value: '1300 Cr+',

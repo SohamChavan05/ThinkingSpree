@@ -1,4 +1,10 @@
+import { useState } from 'react';
+
+const entityTypes = ['Startup', 'Incubator', 'Accelerator', 'University', 'VC', 'Corporate', 'Others'] as const;
+
 export default function GetInTouch() {
+  const [selectedEntity, setSelectedEntity] = useState<string>('');
+
   return (
     <section className="bg-white pt-24 pb-20">
       <div className="max-w-7xl mx-auto px-6">
@@ -6,7 +12,7 @@ export default function GetInTouch() {
           {/* Left - Contact Information Sidebar */}
           <div className="border border-gray-100 rounded-2xl p-8 bg-white flex flex-col justify-between">
             <div>
-              <h3 className="text-[22px] font-bold text-[#1a1a1a] mb-8">
+              <h3 className="text-[18px] font-bold text-[#1a1a1a] mb-8">
                 Contact Information
               </h3>
 
@@ -20,8 +26,8 @@ export default function GetInTouch() {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-[14px] font-bold text-[#1a1a1a]">Email Address</div>
-                    <div className="text-[13px] text-gray-500 mt-0.5">Vani.agarwal@thinkingspree.com</div>
+                    <div className="text-[12px] font-bold text-[#1a1a1a]">Email Address</div>
+                    <div className="text-[11.5px] text-gray-500 mt-0.5">Vani.agarwal@thinkingspree.com</div>
                   </div>
                 </div>
 
@@ -36,8 +42,8 @@ export default function GetInTouch() {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-[14px] font-bold text-[#1a1a1a]">Opening Hour</div>
-                    <div className="text-[13px] text-gray-500 mt-0.5">Mon - Fri: 9:00 AM - 6:00 PM</div>
+                    <div className="text-[12px] font-bold text-[#1a1a1a]">Opening Hour</div>
+                    <div className="text-[11.5px] text-gray-500 mt-0.5">Mon - Fri: 9:00 AM - 6:00 PM</div>
                   </div>
                 </div>
 
@@ -52,8 +58,8 @@ export default function GetInTouch() {
                     </svg>
                   </div>
                   <div>
-                    <div className="text-[14px] font-bold text-[#1a1a1a]">Our Location</div>
-                    <div className="text-[13px] text-gray-500 mt-0.5 leading-relaxed">
+                    <div className="text-[12px] font-bold text-[#1a1a1a]">Our Location</div>
+                    <div className="text-[11.5px] text-gray-500 mt-0.5 leading-relaxed">
                       Bangalore , Hyderabad , Mumbai,<br />
                       Delhi & Kolkata
                   </div>
@@ -64,8 +70,8 @@ export default function GetInTouch() {
           </div>
 
           {/* Right - Form */}
-          <div className="border border-gray-100 rounded-2xl p-8 md:p-12 relative overflow-hidden bg-white">
-            <h2 className="text-[32px] md:text-[40px] font-bold text-[#1a1a1a] mb-3" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+          <div className="border border-gray-100 rounded-2xl p-8 md:p-10 relative overflow-hidden bg-white">
+            <h2 className="text-[28px] md:text-[32px] font-bold text-[#1a1a1a] mb-3" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
               Start a Discovery Call
             </h2>
             <p className="text-[14px] text-gray-500 mb-8 max-w-2xl leading-relaxed">
@@ -101,7 +107,30 @@ export default function GetInTouch() {
                 />
               </div>
 
-              {/* Row 3: Stage dropdown (half width) */}
+              {/* Row 3: "Are you a" — Entity Type Selector */}
+              <div>
+                <label className="text-[13px] font-semibold text-[#1a1a1a] block mb-2.5">
+                  Are you a*
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {entityTypes.map((type) => (
+                    <button
+                      key={type}
+                      type="button"
+                      onClick={() => setSelectedEntity(type)}
+                      className={`px-4 py-2 rounded-full text-[12.5px] font-medium border transition-all duration-200 cursor-pointer ${
+                        selectedEntity === type
+                          ? 'bg-[#2F4A2F] text-white border-[#2F4A2F] shadow-sm'
+                          : 'bg-white text-gray-600 border-gray-200 hover:border-[#2F4A2F]/40 hover:text-[#2F4A2F]'
+                      }`}
+                    >
+                      {type}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Row 4: Stage dropdown (half width) */}
               <div className="grid md:grid-cols-2 gap-4">
                 <select
                   className="w-full px-5 py-3.5 rounded-lg bg-[#EEF8E6]/50 text-[13px] text-gray-400 border-none outline-none focus:ring-2 focus:ring-[#2F4A2F]/30 transition-shadow appearance-none cursor-pointer"
@@ -114,19 +143,32 @@ export default function GetInTouch() {
                 >
                   <option value="" disabled>What stage is your business in?</option>
                   <option value="idea">Idea Stage</option>
+                  <option value="pre-seed">Pre-Seed</option>
+                  <option value="seed">Seed Stage</option>
                   <option value="early">Early Stage (Pre-Revenue)</option>
-                  <option value="growth">Growth Stage (₹2Cr - ₹20Cr)</option>
+                  <option value="growth-early">Growth Stage (₹0 - ₹2Cr)</option>
+                  <option value="growth-mid">Growth Stage (₹2Cr - ₹10Cr)</option>
+                  <option value="growth-late">Growth Stage (₹10Cr - ₹20Cr)</option>
                   <option value="scale">Scale Stage (₹20Cr+)</option>
                   <option value="pre-ipo">Pre-IPO</option>
                 </select>
                 <div className="hidden md:block" />
               </div>
 
-              {/* Row 4: Textarea */}
+              {/* Row 5: What are you trying to build */}
               <div>
                 <textarea
-                  placeholder="What are the current challenges your are facing/ goals you are looking to achieve?"
-                  rows={5}
+                  placeholder="What is it you are trying to build for your company?"
+                  rows={3}
+                  className="w-full px-5 py-3.5 rounded-lg bg-[#EEF8E6]/50 text-[13px] text-[#1a1a1a] placeholder-gray-400 border-none outline-none focus:ring-2 focus:ring-[#2F4A2F]/30 transition-shadow resize-none"
+                />
+              </div>
+
+              {/* Row 6: Challenges / Goals Textarea */}
+              <div>
+                <textarea
+                  placeholder="What are the current challenges you are facing / goals you are looking to achieve?"
+                  rows={4}
                   className="w-full px-5 py-3.5 rounded-lg bg-[#EEF8E6]/50 text-[13px] text-[#1a1a1a] placeholder-gray-400 border-none outline-none focus:ring-2 focus:ring-[#2F4A2F]/30 transition-shadow resize-none"
                 />
               </div>

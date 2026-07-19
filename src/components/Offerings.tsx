@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import FinalCTA from './FinalCTA';
 
 const earlyStageSteps = [
   {
     id: '01',
-    title: 'Idea Builder',
+    title: 'Prototype Builder',
     shortLabel: 'Raw Idea',
     desc: 'You have a raw idea. No prototype yet.',
     whatWeBuild: 'Prototype built and validated with feedback from 10 real customers. Business model canvas, customer segmentation, and value proposition established.',
@@ -33,7 +33,7 @@ const earlyStageSteps = [
   {
     id: '04',
     title: 'GTM Builder',
-    shortLabel: 'MVP ready',
+    shortLabel: 'Market Ready',
     desc: 'MVP is ready. Need early trial customers.',
     whatWeBuild: '2 customers onboarded with right ICP and a funnel of 30-40 qualified ICP customers. Channel plan, sales SOP, and communication framework built.',
     duration: '12 T-Sprints · 6 months',
@@ -53,7 +53,7 @@ const earlyStageSteps = [
     title: 'Funding Builder',
     shortLabel: 'All stages',
     desc: 'Available at all stages.',
-    whatWeBuild: '2 VC connects with an 80% enhanced pitch deck and a system for VC pipeline building. Narrative, valuation benchmarking, financial model, and pitch practice.',
+    whatWeBuild: '2 VC connects with an investor ready pitch deck & a system for VC pipeline building. Narrative, valuation benchmarking, financial model, and pitch practice.',
     duration: '6 T-Sprints · 3 months',
     delivery: 'Every 15 days · Fasttrack: 6 weeks',
   },
@@ -63,38 +63,38 @@ const earlyStageSteps = [
 const growthSuites = [
   {
     title: 'Product Suite',
-    desc: 'Core product systems operational. Team running independently with 30% reduction in founder involvement.',
-    duration: '60 Blocks   9 months',
+    desc: 'Build a product organisation that can scale without constant founder involvement.',
+    duration: '60 Blocks • 9 Months',
     icon: '/Offering/icon6.png',
   },
   {
     title: 'Market & Growth Suite',
-    desc: '2–3 growth channels activated. CAC and conversion benchmarks established.',
-    duration: '60 Blocks   9 months',
+    desc: 'Design predictable growth systems that attract, convert, and retain the right customers.',
+    duration: '60 Blocks • 9 Months',
     icon: '/Offering/icon5.png',
   },
   {
     title: 'Pricing & Monetisation Suite',
-    desc: 'Revised pricing architecture implemented. Revenue per customer improved 20–30%.',
-    duration: '60 Blocks   9 months',
+    desc: 'Turn pricing into a growth lever with stronger positioning and higher customer value.',
+    duration: '60 Blocks • 9 Months',
     icon: '/Offering/icon4.png',
   },
   {
     title: 'Process & Operations Suite',
-    desc: 'Key SOPs built, bottlenecks removed. Execution no longer dependent on founder.',
-    duration: '60 Blocks   9 months',
+    desc: 'Replace operational bottlenecks with systems that keep the business moving.',
+    duration: '60 Blocks • 9 Months',
     icon: '/Offering/icon3.png',
   },
   {
     title: 'People & Org Design Suite',
-    desc: 'Org structure redesigned for next growth phase. KRAs live across the leadership team.',
-    duration: '60 Blocks   9 months',
+    desc: 'Build the leadership structure, roles, and accountability needed for the next stage of growth.',
+    duration: '60 Blocks • 9 Months',
     icon: '/Offering/icon2.png',
   },
   {
     title: 'New Product Builder & Growth',
-    desc: 'New product launched. Validated demand from 10+ paying customers.',
-    duration: '60 Blocks   9 months',
+    desc: 'Discover, validate, and launch new growth opportunities with confidence.',
+    duration: '60 Blocks • 9 Months',
     icon: '/Offering/icon1.png',
   },
 ];
@@ -102,6 +102,13 @@ const growthSuites = [
 export default function Offerings() {
   const [activeStepIndex, setActiveStepIndex] = useState(0);
   const activeStep = earlyStageSteps[activeStepIndex];
+
+  useEffect(() => {
+    const activeEl = document.getElementById(`step-tab-${activeStepIndex}`);
+    if (activeEl) {
+      activeEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [activeStepIndex]);
 
   return (
     <div className="bg-white min-h-screen pt-16">
@@ -158,7 +165,7 @@ export default function Offerings() {
 
             <div className="max-w-3xl space-y-4">
               <h3 className="text-[20px] md:text-[22px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                Growth Strategy T-Sprints
+                Strategy T-Sprints
               </h3>
               <p className="text-[13px] md:text-[14px] text-gray-500 leading-relaxed font-normal">
                 Gap analysis and opportunity mapping to set direction fast. Goal setting and key actionables in as little as 2 hours. Built for founders who need clarity before they can move.
@@ -185,45 +192,75 @@ export default function Offerings() {
               </p>
             </div>
 
-            {/* Steps Navigation - Scrollable on mobile */}
-            <div className="relative mb-10 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200">
-              {/* Connecting line */}
-              <div className="absolute top-[26px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
+            {/* Steps Navigation - Scrollable on mobile with navigation arrows */}
+            <div className="relative mb-10 flex items-center gap-2">
+              {/* Left Arrow Button */}
+              <button
+                type="button"
+                onClick={() => setActiveStepIndex((prev) => Math.max(0, prev - 1))}
+                disabled={activeStepIndex === 0}
+                className="md:hidden p-2 rounded-full border border-gray-200 bg-white text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed shrink-0 shadow-sm hover:border-[#2F4A2F] active:bg-gray-50 transition-colors"
+                aria-label="Previous step"
+              >
+                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
 
-              <div className="flex md:justify-between items-start gap-8 min-w-[760px] px-2 relative z-10">
-                {earlyStageSteps.map((step, idx) => {
-                  const isActive = activeStepIndex === idx;
-                  return (
-                    <button
-                      key={step.id}
-                      onClick={() => setActiveStepIndex(idx)}
-                      className="flex flex-col items-center text-center focus:outline-none group/btn cursor-pointer w-24 shrink-0"
-                    >
-                      <div
-                        className={`w-[52px] h-[52px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${
-                          isActive
-                            ? 'bg-[#2F4A2F] text-white shadow-sm ring-4 ring-[#2F4A2F]/10'
-                            : 'bg-white border border-gray-200 text-[#1a1a1a] group-hover/btn:border-[#2F4A2F] group-hover/btn:text-[#2F4A2F]'
-                        }`}
-                      >
-                        {step.id}
-                      </div>
+              {/* Steps Scroll Container */}
+              <div className="flex-1 relative overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200">
+                {/* Connecting line */}
+                <div className="absolute top-[26px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
 
-                      {/* Labels */}
-                      <span
-                        className={`text-[12px] font-semibold mt-3 transition-colors duration-200 ${
-                          isActive ? 'text-[#2F4A2F]' : 'text-gray-500 group-hover/btn:text-[#2F4A2F]'
-                        }`}
+                <div className="flex md:justify-between items-start gap-8 min-w-[760px] px-2 relative z-10">
+                  {earlyStageSteps.map((step, idx) => {
+                    const isActive = activeStepIndex === idx;
+                    return (
+                      <button
+                        key={step.id}
+                        id={`step-tab-${idx}`}
+                        onClick={() => setActiveStepIndex(idx)}
+                        className="flex flex-col items-center text-center focus:outline-none group/btn cursor-pointer w-24 shrink-0"
                       >
-                        {step.title}
-                      </span>
-                      <span className="text-[10px] text-gray-400 mt-0.5">
-                        {step.shortLabel}
-                      </span>
-                    </button>
-                  );
-                })}
+                        <div
+                          className={`w-[52px] h-[52px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${
+                            isActive
+                              ? 'bg-[#2F4A2F] text-white shadow-sm ring-4 ring-[#2F4A2F]/10'
+                              : 'bg-white border border-gray-200 text-[#1a1a1a] group-hover/btn:border-[#2F4A2F] group-hover/btn:text-[#2F4A2F]'
+                          }`}
+                        >
+                          {step.id}
+                        </div>
+
+                        {/* Labels */}
+                        <span
+                          className={`text-[12px] font-semibold mt-3 transition-colors duration-200 ${
+                            isActive ? 'text-[#2F4A2F]' : 'text-gray-500 group-hover/btn:text-[#2F4A2F]'
+                          }`}
+                        >
+                          {step.title}
+                        </span>
+                        <span className="text-[10px] text-gray-400 mt-0.5">
+                          {step.shortLabel}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
+
+              {/* Right Arrow Button */}
+              <button
+                type="button"
+                onClick={() => setActiveStepIndex((prev) => Math.min(earlyStageSteps.length - 1, prev + 1))}
+                disabled={activeStepIndex === earlyStageSteps.length - 1}
+                className="md:hidden p-2 rounded-full border border-gray-200 bg-white text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed shrink-0 shadow-sm hover:border-[#2F4A2F] active:bg-gray-50 transition-colors"
+                aria-label="Next step"
+              >
+                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
             </div>
 
             {/* Dynamic Step Detail Box - Inline layout without outer background container */}
@@ -307,7 +344,7 @@ export default function Offerings() {
       </section>
 
       {/* ─── Growth Stage Section ─── */}
-      <section className="bg-[#EEF8E6]/25 border-t border-b border-[#EEF8E6]/40 py-20">
+      <section id="growth-stage" className="bg-[#EEF8E6]/25 border-t border-b border-[#EEF8E6]/40 py-20">
         <div className="max-w-7xl mx-auto px-6">
           {/* Section Title */}
           <div className="flex items-baseline gap-3 mb-8 border-b border-gray-100 pb-4">
@@ -367,7 +404,7 @@ export default function Offerings() {
               <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
                 <div>
                   <h3 className="text-[20px] md:text-[22px] font-bold text-[#2F4A2F] mb-2" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                    Builder T-Sprints
+                    System Builders T-Sprints
                   </h3>
                   <p className="text-[13px] text-gray-400 font-normal">
                     Pick the function that needs the most attention. Each suite is a deep, structured engagement.

@@ -50,3 +50,67 @@ body {
 .animate-blink {
   animation: blink 1s step-end infinite;
 }
+
+@keyframes marqueeLeft {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marqueeRight {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-marquee-left {
+  animation: marqueeLeft 70s linear infinite;
+}
+
+.animate-marquee-left:hover {
+  animation-play-state: paused;
+}
+
+.animate-marquee-right {
+  animation: marqueeRight 60s linear infinite;
+}
+
+.animate-marquee-right:hover {
+  animation-play-state: paused;
+}
+
+/* Site-wide font size overrides to scale all text slightly larger */
+.text-\[9px\] { font-size: 10px !important; }
+.text-\[10px\] { font-size: 11.5px !important; }
+.text-\[10\.5px\] { font-size: 12px !important; }
+.text-\[11px\] { font-size: 12.5px !important; }
+.text-\[11\.5px\] { font-size: 13px !important; }
+.text-\[12px\] { font-size: 13.5px !important; }
+.text-\[12\.5px\] { font-size: 14px !important; }
+.text-\[13px\] { font-size: 14.5px !important; }
+.text-\[13\.5px\] { font-size: 15px !important; }
+.text-\[14px\] { font-size: 15.5px !important; }
+.text-\[14\.5px\] { font-size: 16px !important; }
+.text-\[15px\] { font-size: 16.5px !important; }
+.text-\[15\.5px\] { font-size: 17px !important; }
+.text-\[16px\] { font-size: 17.5px !important; }
+.text-\[17px\] { font-size: 18.5px !important; }
+.text-\[17\.5px\] { font-size: 19px !important; }
+.text-\[18px\] { font-size: 19.5px !important; }
+.text-\[19px\] { font-size: 20.5px !important; }
+.text-\[20px\] { font-size: 22px !important; }
+.text-\[22px\] { font-size: 24px !important; }
+.text-\[24px\] { font-size: 29px !important; }
+.text-\[26px\] { font-size: 31px !important; }
+.text-\[28px\] { font-size: 34px !important; }
+.text-\[30px\] { font-size: 36px !important; }
+.text-\[32px\] { font-size: 38px !important; }
+.text-\[34px\] { font-size: 40px !important; }
+.text-\[36px\] { font-size: 43px !important; }
+.text-\[38px\] { font-size: 45px !important; }
+.text-\[40px\] { font-size: 48px !important; }
+.text-\[42px\] { font-size: 50px !important; }
+.text-\[44px\] { font-size: 53px !important; }
+.text-\[48px\] { font-size: 58px !important; }
+.text-\[54px\] { font-size: 64px !important; }
+.text-\[80px\] { font-size: 90px !important; }
+.text-\[130px\] { font-size: 142px !important; }
+.text-\[160px\] { font-size: 174px !important; }

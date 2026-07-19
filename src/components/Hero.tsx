@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const words = [
   "It's Designed.",
@@ -80,12 +81,12 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3 pt-1 w-full sm:w-auto">
-              <button className="bg-[#2F4A2F] text-white text-[13px] font-medium px-5 py-2.5 rounded hover:bg-[#3D5E3D] transition-all duration-200 hover:-translate-y-0.5 shadow-sm w-full sm:w-auto text-center justify-center">
+              <Link to="/offerings" className="bg-[#2F4A2F] text-white text-[13px] font-medium px-5 py-2.5 rounded hover:bg-[#3D5E3D] transition-all duration-200 hover:-translate-y-0.5 shadow-sm w-full sm:w-auto text-center justify-center">
                 Explore our Offerings
-              </button>
-              <button className="border border-gray-300 text-gray-700 text-[13px] font-medium px-5 py-2.5 rounded hover:border-[#2F4A2F] hover:text-[#2F4A2F] transition-all duration-200 hover:-translate-y-0.5 w-full sm:w-auto text-center justify-center">
+              </Link>
+              <Link to="/contact" className="border border-gray-300 text-gray-700 text-[13px] font-medium px-5 py-2.5 rounded hover:border-[#2F4A2F] hover:text-[#2F4A2F] transition-all duration-200 hover:-translate-y-0.5 w-full sm:w-auto text-center justify-center">
                 Book a discovery call
-              </button>
+              </Link>
             </div>
           </div>
 

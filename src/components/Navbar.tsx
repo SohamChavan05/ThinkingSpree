@@ -3,8 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Home', to: '/' },
-  { label: 'Offerings', to: '/offerings' },
-  { label: 'Partner Program', to: '/partner-program' },
+  { label: 'For Startups', to: '/offerings' },
+  { label: 'For Ecosystem Partners', to: '/partner-program' },
   { label: 'Case Studies', to: '/case-studies' },
   { label: 'Insight', to: '/insights' },
   { label: 'About Us', to: '/about' },

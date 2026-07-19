@@ -1,11 +1,32 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import FinalCTA from './FinalCTA';
+
+const testimonials = [
+  {
+    quote: "Most accelerators struggle to give deep, execution-level support to all startups. ThinkingSpree took that load off our team, providing structured, bi-weekly sprints that moved the needle for every founder.",
+    author: "Elena Rostova",
+    role: "Program Director",
+    company: "Nexus Venture Accelerator",
+  },
+  {
+    quote: "Our mentors can only give so much time. ThinkingSpree's T-Sprints bridged the gap perfectly—turning raw mentor feedback into actual software prototypes and customer validation steps within weeks.",
+    author: "David Chen",
+    role: "Head of Incubation",
+    company: "Spark Innovation Lab",
+  },
+  {
+    quote: "Portfolio visibility was a black box for us. With ThinkingSpree, we didn't just see cohort attendance; we saw verified milestones, live roadmaps, and real customer traction updates.",
+    author: "Sarah Jenkins",
+    role: "VP of Portfolio Operations",
+    company: "Latitude VC",
+  }
+];
 
 const partnerStageSteps = [
   {
     id: '01',
-    title: 'Idea Builder',
+    title: 'Prototype Builder',
     shortLabel: 'Raw Idea',
     desc: 'You have a raw idea. No prototype yet.',
     whatWeBuild: 'Prototype built and validated with feedback from 10 real customers. Business model canvas, customer segmentation, and value proposition established.',
@@ -33,7 +54,7 @@ const partnerStageSteps = [
   {
     id: '04',
     title: 'GTM Builder',
-    shortLabel: 'MVP ready',
+    shortLabel: 'Market Ready',
     desc: 'MVP is ready. Need early trial customers.',
     whatWeBuild: '2 customers onboarded with right ICP and a funnel of 30-40 qualified ICP customers. Channel plan, sales SOP, and communication framework built.',
     duration: '12 T-Sprints · 6 months',
@@ -53,7 +74,7 @@ const partnerStageSteps = [
     title: 'Funding Builder',
     shortLabel: 'All stages',
     desc: 'Available at all stages.',
-    whatWeBuild: '2 VC connects with an 80% enhanced pitch deck and a system for VC pipeline building. Narrative, valuation benchmarking, financial model, and pitch practice.',
+    whatWeBuild: '2 VC connects with an investor ready pitch deck & a system for VC pipeline building. Narrative, valuation benchmarking, financial model, and pitch practice.',
     duration: '6 T-Sprints · 3 months',
     delivery: 'Every 15 days · Fasttrack: 6 weeks',
   },
@@ -176,6 +197,16 @@ export default function PartnerProgram() {
   // Section 03 Toggle (1 = Early Stage, 2 = Scale Stage)
   const [activeToggleSection, setActiveToggleSection] = useState(1);
 
+  // Testimonials slider state and effect
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="bg-white min-h-screen pt-24">
       {/* ─── Hero Section ─── */}
@@ -184,17 +215,17 @@ export default function PartnerProgram() {
           {/* Left Column */}
           <div className="space-y-6">
             <span className="text-[#E29A52] text-[11px] font-semibold tracking-widest uppercase block">
-              ✦ PARTNER PROGRAM
+              ✦ FOR ECOSYSTEM PARTNERS
             </span>
             <div>
               <h1
-                className="text-[44px] md:text-[48px] text-[#1a1a1a] leading-[1.08] mb-2 tracking-tight"
+                className="text-[34px] md:text-[38px] text-[#1a1a1a] leading-[1.08] mb-2 tracking-tight"
                 style={{ fontFamily: "'PT Serif', Georgia, serif" }}
               >
                 The depth your programme deserves
               </h1>
               <h1
-                className="text-[44px] md:text-[48px] leading-[1.08] tracking-tight text-[#2F4A2F]"
+                className="text-[34px] md:text-[38px] leading-[1.08] tracking-tight text-[#2F4A2F]"
                 style={{
                   fontFamily: "'Liberation Serif', 'Times New Roman', Times, serif",
                   fontStyle: 'italic',
@@ -205,7 +236,7 @@ export default function PartnerProgram() {
             </div>
             <div className="max-w-xl space-y-4 text-gray-500 text-[14px] leading-relaxed font-normal">
               <p>
-                Most programmes provide access to mentors, networks, and resources. We provide the structured work that helps startups turn that access into progress.
+                Most programmes offer startups access to mentors, networks, and resources. We provide the structured, hands-on execution that helps founders turn that access into real traction and progress.
               </p>
               <p>
                 Partner with us to make that support part of your programme.
@@ -221,59 +252,38 @@ export default function PartnerProgram() {
             </div>
           </div>
 
-          {/* Right Column - 3 Cards */}
-          <div className="space-y-4">
-            {/* Card 1 */}
-            <div className="relative bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-all duration-300 overflow-hidden group">
-              {/* Background shape element4.png (orange circles grid) */}
-              <img
-                src="/AboutUs/element4.png"
-                alt=""
-                className="absolute right-0 bottom-0 pointer-events-none select-none w-20 h-20 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-              />
-              <div className="space-y-2 relative z-10 max-w-[85%]">
-                <h4 className="text-[16px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                  Individual startup engagement
-                </h4>
-                <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                  Structured T-Sprints tailored to each startup's stage, priorities, and growth challenges.
+          {/* Right Column - Program Manager's Testimonials (Naked Typography like AboutUs) */}
+          <div className="relative min-h-[260px] flex items-center">
+            <div className="space-y-4 w-full">
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" opacity="0.4">
+                <path d="M8 28V20C8 14 12 10 18 8L19 10C14 12 13 15 13 18H18V28H8ZM22 28V20C22 14 26 10 32 8L33 10C28 12 27 15 27 18H32V28H22Z" fill="#E29A52"/>
+              </svg>
+              
+              <div className="transition-opacity duration-500 ease-in-out">
+                <p
+                  key={activeTestimonial}
+                  className="text-[18px] md:text-[22px] text-[#1a1a1a] leading-relaxed font-light animate-fadeIn"
+                  style={{ fontFamily: "'PT Serif', Georgia, serif" }}
+                >
+                  "{testimonials[activeTestimonial].quote}"
+                </p>
+                <p className="text-[13px] text-gray-500 mt-3 animate-fadeIn">
+                  — <span className="font-semibold text-[#1a1a1a]">{testimonials[activeTestimonial].author}</span>, <span className="font-normal">{testimonials[activeTestimonial].role}</span> at <span className="font-medium">{testimonials[activeTestimonial].company}</span>
                 </p>
               </div>
-            </div>
-
-            {/* Card 2 */}
-            <div className="relative bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-all duration-300 overflow-hidden group">
-              {/* Background shape element2.png (orange/pink circles) */}
-              <img
-                src="/AboutUs/element2.png"
-                alt=""
-                className="absolute right-0 bottom-0 pointer-events-none select-none w-20 h-20 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-              />
-              <div className="space-y-2 relative z-10 max-w-[85%]">
-                <h4 className="text-[16px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                  Your network, better timed
-                </h4>
-                <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                  We surface where mentors, investors, and partners can create the greatest impact.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3 */}
-            <div className="relative bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-md transition-all duration-300 overflow-hidden group">
-              {/* Background shape element3.png (orange diagonal chevrons) */}
-              <img
-                src="/AboutUs/element3.png"
-                alt=""
-                className="absolute right-0 bottom-0 pointer-events-none select-none w-20 h-20 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-              />
-              <div className="space-y-2 relative z-10 max-w-[85%]">
-                <h4 className="text-[16px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                  Programme-wide outcomes
-                </h4>
-                <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                  Progress becomes visible across the cohort — not just participation, but real movement.
-                </p>
+              
+              {/* Carousel dots */}
+              <div className="flex gap-1.5 pt-4">
+                {testimonials.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveTestimonial(idx)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      idx === activeTestimonial ? 'bg-[#E29A52] w-4' : 'bg-[#E29A52]/30 hover:bg-[#E29A52]/50'
+                    }`}
+                    aria-label={`Go to quote ${idx + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
@@ -283,7 +293,7 @@ export default function PartnerProgram() {
       {/* ─── Co-Delivery Model Section ─── */}
       <section className="bg-white py-20 relative overflow-hidden">
         {/* Soft backdrops */}
-        <div className="absolute right-0 bottom-0 text-[160px] font-bold text-gray-100/80 select-none pointer-events-none z-0 transform translate-y-12" style={{ fontFamily: "'Liberation Serif', Georgia, serif", fontStyle: 'italic' }}>
+        <div className="absolute right-4 bottom-4 text-[120px] lg:text-[160px] font-bold text-gray-100/10 select-none pointer-events-none z-0 hidden lg:block" style={{ fontFamily: "'Liberation Serif', Georgia, serif", fontStyle: 'italic' }}>
           Partnership
         </div>
 
@@ -381,7 +391,7 @@ export default function PartnerProgram() {
               />
               <div className="relative z-10 space-y-3">
                 <span className="text-[#6B9E78] text-[13px] font-semibold block mb-1">
-                  Step 3 — Activate
+                  Step 4 — Progress
                 </span>
                 <h4 className="text-[17px] font-bold text-[#2F4A2F] leading-snug" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
                   Turning activity into measurable progress.
@@ -397,431 +407,725 @@ export default function PartnerProgram() {
 
       {/* ─── Section 01: Universities & Institutions ─── */}
       <div className="bg-[#FBFDF9] w-full">
-      <section className="max-w-7xl mx-auto px-6 py-20">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
-            01
-          </div>
-          <h2 className="text-[28px] md:text-[32px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-            Universities & Institutions
-          </h2>
-        </div>
-        <p className="text-[13.5px] text-gray-500 max-w-2xl mb-8 leading-relaxed font-normal">
-          For programmes supporting raw idea and early prototype stage founders
-        </p>
-
-        {/* 3 tabs grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Credibility</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">Structured methodology. Visible outcomes.</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Differentiation</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">A system that turns ambition into momentum.</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Founder outcomes</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">Real progress, not just programme participation.</p>
-          </div>
-        </div>
-
-        {/* 2 Main cards block */}
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Card 1: Growth Strategy */}
-          <div className="border border-gray-100 rounded-2xl p-6 md:p-8 bg-white hover:shadow-md transition-shadow relative overflow-hidden group flex flex-col justify-between">
-            {/* Background shape element_1.png */}
-            <img
-              src="/Offering/element_1.png"
-              alt=""
-              className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-            />
-
-            <div className="space-y-4">
-              <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                Growth Strategy T-Sprints
-              </h3>
-              <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                Helping early-stage founders turn uncertainty into clear next steps.
-              </p>
-
-              <div className="pt-2">
-                {/* Feature Box 1 */}
-                <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
-                  <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                    <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap Analysis</h4>
-                    <p className="text-[11px] text-gray-400 font-normal">Goal setting, key actionables, key insights</p>
-                    <p className="text-[10px] text-gray-400 font-light mt-1">1 T-Sprints &nbsp;&nbsp; 2 hrs</p>
-                  </div>
-                </div>
-
-                {/* Feature Box 2 */}
-                <div className="flex gap-4 items-center mt-4 bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
-                  <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                    <img src="/Offering/element_3.png" alt="" className="w-6 h-6 object-contain" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap + Opportunity Analysis</h4>
-                    <p className="text-[11px] text-gray-400 font-normal">Goal setting, actionables, insights, business & market potential</p>
-                    <p className="text-[10px] text-gray-400 font-light mt-1">2 T-Sprints &nbsp;&nbsp; 15 days</p>
-                  </div>
-                </div>
-              </div>
+        <section className="max-w-7xl mx-auto px-6 py-20">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
+              01
             </div>
+            <h2 className="text-[28px] md:text-[32px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+              Universities & Institutions
+            </h2>
+          </div>
+          <p className="text-[13.5px] text-gray-500 max-w-2xl mb-8 leading-relaxed font-normal">
+            For programmes supporting raw idea and early prototype stage founders
+          </p>
 
-            <div className="pt-6 relative z-10">
-              <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                Get in touch →
-              </Link>
+          {/* 3 tabs grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Credibility</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">Structured methodology. Visible outcomes.</p>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Differentiation</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">A system that turns ambition into momentum.</p>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Founder outcomes</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">Real progress, not just programme participation.</p>
             </div>
           </div>
 
-          {/* Card 2: Builder */}
-          <div className="border border-gray-100 rounded-2xl p-6 md:p-8 bg-white hover:shadow-md transition-shadow relative overflow-hidden group flex flex-col justify-between">
-            {/* Background shape element_1.png */}
-            <img
-              src="/Offering/element_2.png"
-              alt=""
-              className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-            />
+          {/* 2 Main cards block */}
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Card 1: Growth Strategy */}
+            <div className="border border-gray-100 rounded-2xl p-6 md:p-8 bg-white hover:shadow-md transition-shadow relative overflow-hidden group flex flex-col justify-between">
+              {/* Background shape element_1.png */}
+              <img
+                src="/Offering/element_1.png"
+                alt=""
+                className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
+              />
 
-            <div className="space-y-4">
-              <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                Builder T-Sprints
-              </h3>
-              <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                Structured execution tracks that transform ideas into validated ventures.
-              </p>
+              <div className="space-y-4">
+                <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                  Growth Strategy T-Sprints
+                </h3>
+                <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
+                  Helping early-stage founders turn uncertainty into clear next steps.
+                </p>
 
-              <div className="pt-2">
-                {/* Feature Box 1 */}
-                <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
-                  <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                    <img src="/Offering/icon2.png" alt="" className="w-6 h-6 object-contain" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <div className="flex items-baseline gap-1.5 flex-wrap">
-                      <h4 className="text-[13px] font-bold text-[#1a1a1a]">Idea Builder</h4>
-                      <span className="text-[10px] text-gray-400 font-normal">Raw Idea</span>
+                <div className="pt-2">
+                  {/* Feature Box 1 */}
+                  <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
+                    <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                      <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
                     </div>
-                    <p className="text-[11px] text-gray-400 font-normal mt-0.5">Goal setting, key actionables, key insights</p>
-                    <p className="text-[10px] text-gray-400 mt-1 font-light leading-tight">
-                      6 T-Sprints &nbsp;&nbsp; 3 months (Every 15 days) &nbsp;&nbsp; <span className="text-[#E29A52] font-semibold">Fasttrack 6 weeks</span> (Every week)
-                    </p>
-                  </div>
-                </div>
-
-                {/* Feature Box 2 */}
-                <div className="flex gap-4 items-center mt-4 bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
-                  <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                    <img src="/Offering/element_1.png" alt="" className="w-6 h-6 object-contain" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <div className="flex items-baseline gap-1.5 flex-wrap">
-                      <h4 className="text-[13px] font-bold text-[#1a1a1a]">Funding Builder</h4>
-                      <span className="text-[10px] text-gray-400 font-normal">All stages</span>
+                    <div className="space-y-0.5">
+                      <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap Analysis</h4>
+                      <p className="text-[11px] text-gray-400 font-normal">Goal setting, key actionables, key insights</p>
+                      <p className="text-[10px] text-gray-400 font-light mt-1">1 T-Sprints &nbsp;&nbsp; 2 hrs</p>
                     </div>
-                    <p className="text-[11px] text-gray-400 font-normal mt-0.5">2 VC connects, 80% enhanced pitch, VC pipeline system</p>
-                    <p className="text-[10px] text-gray-400 mt-1 font-light leading-tight">
-                      6 T-Sprints &nbsp;&nbsp; 3 months (Every 15 days) &nbsp;&nbsp; <span className="text-[#E29A52] font-semibold">Fasttrack 6 weeks</span> (Every week)
-                    </p>
+                  </div>
+
+                  {/* Feature Box 2 */}
+                  <div className="flex gap-4 items-center mt-4 bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
+                    <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                      <img src="/Offering/element_3.png" alt="" className="w-6 h-6 object-contain" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap + Opportunity Analysis</h4>
+                      <p className="text-[11px] text-gray-400 font-normal">Goal setting, actionables, insights, business & market potential</p>
+                      <p className="text-[10px] text-gray-400 font-light mt-1">2 T-Sprints &nbsp;&nbsp; 15 days</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <div className="pt-6 relative z-10">
-              <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                Get in touch →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── Section 02: Incubators & Accelerators ─── */}
-      <section className="max-w-7xl mx-auto px-6 py-20 bg-white relative overflow-hidden">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
-            02
-          </div>
-          <h2 className="text-[28px] md:text-[32px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-            Incubators & Accelerators
-          </h2>
-        </div>
-        <p className="text-[13.5px] text-gray-500 max-w-2xl mb-8 leading-relaxed font-normal">
-          For programmes supporting Build stage founders across all tracks
-        </p>
-
-        {/* 3 tabs grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Better programme delivery</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">Structured engagement, measurable progress.</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Your network, better timed</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">The right connections at the right moment.</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Cohort-wide outcomes</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">More founders moving forward, faster.</p>
-          </div>
-        </div>
-
-        <div className="space-y-8">
-          {/* Card 1: Growth Strategy */}
-          <div className="border border-gray-100 rounded-2xl p-6 md:p-8 bg-white hover:shadow-md transition-shadow relative overflow-hidden group flex flex-col justify-between">
-            {/* Background shape element_1.png */}
-            <img
-              src="/Offering/element_1.png"
-              alt=""
-              className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-            />
-            
-            <div className="space-y-4">
-              <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                Growth Strategy T-Sprints
-              </h3>
-              <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                Strategic working sessions that help startups identify growth priorities, validate opportunities, and build a focused roadmap for the next stage of growth.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-4 pt-2">
-                {/* Feature Box 1 */}
-                <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
-                  <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                    <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap Analysis</h4>
-                    <p className="text-[11px] text-gray-400 font-normal">Goal setting, key actionables, key insights</p>
-                    <p className="text-[10px] text-gray-400 font-light mt-1">1 T-Sprints &nbsp;&nbsp; 2 hrs</p>
-                  </div>
-                </div>
-
-                {/* Feature Box 2 */}
-                <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
-                  <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                    <img src="/Offering/element_3.png" alt="" className="w-6 h-6 object-contain" />
-                  </div>
-                  <div className="space-y-0.5">
-                    <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap + Opportunity Analysis</h4>
-                    <p className="text-[11px] text-gray-400 font-normal">Goal setting, actionables, insights, business & market potential</p>
-                    <p className="text-[10px] text-gray-400 font-light mt-1">2 T-Sprints &nbsp;&nbsp; 15 days</p>
-                  </div>
-                </div>
+              <div className="pt-6 relative z-10">
+                <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                  Get in touch →
+                </Link>
               </div>
             </div>
 
-            <div className="pt-6 relative z-10">
-              <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                Get in touch →
-              </Link>
+            {/* Card 2: Builder */}
+            <div className="border border-gray-100 rounded-2xl p-6 md:p-8 bg-white hover:shadow-md transition-shadow relative overflow-hidden group flex flex-col justify-between">
+              {/* Background shape element_1.png */}
+              <img
+                src="/Offering/element_2.png"
+                alt=""
+                className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
+              />
+
+              <div className="space-y-4">
+                <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                  Builder T-Sprints
+                </h3>
+                <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
+                  Structured execution tracks that transform ideas into validated ventures.
+                </p>
+
+                <div className="pt-2">
+                  {/* Feature Box 1 */}
+                  <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
+                    <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                      <img src="/Offering/icon2.png" alt="" className="w-6 h-6 object-contain" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="flex items-baseline gap-1.5 flex-wrap">
+                        <h4 className="text-[13px] font-bold text-[#1a1a1a]">Prototype Builder</h4>
+                        <span className="text-[10px] text-gray-400 font-normal">Raw Idea</span>
+                      </div>
+                      <p className="text-[11px] text-gray-400 font-normal mt-0.5">Goal setting, key actionables, key insights</p>
+                      <p className="text-[10px] text-gray-400 mt-1 font-light leading-tight">
+                        6 T-Sprints &nbsp;&nbsp; 3 months (Every 15 days) &nbsp;&nbsp; <span className="text-[#E29A52] font-semibold">Fasttrack 6 weeks</span> (Every week)
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Feature Box 2 */}
+                  <div className="flex gap-4 items-center mt-4 bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
+                    <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                      <img src="/Offering/element_1.png" alt="" className="w-6 h-6 object-contain" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <div className="flex items-baseline gap-1.5 flex-wrap">
+                        <h4 className="text-[13px] font-bold text-[#1a1a1a]">Funding Builder</h4>
+                        <span className="text-[10px] text-gray-400 font-normal">All stages</span>
+                      </div>
+                      <p className="text-[11px] text-gray-400 font-normal mt-0.5">2 VC connects, investor ready pitch, VC pipeline system</p>
+                      <p className="text-[10px] text-gray-400 mt-1 font-light leading-tight">
+                        6 T-Sprints &nbsp;&nbsp; 3 months (Every 15 days) &nbsp;&nbsp; <span className="text-[#E29A52] font-semibold">Fasttrack 6 weeks</span> (Every week)
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 relative z-10">
+                <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                  Get in touch →
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Section 02: Incubators & Accelerators ─── */}
+        <section className="max-w-7xl mx-auto px-6 py-20 bg-white relative overflow-hidden">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
+              02
+            </div>
+            <h2 className="text-[28px] md:text-[32px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+              Incubators & Accelerators
+            </h2>
+          </div>
+          <p className="text-[13.5px] text-gray-500 max-w-2xl mb-8 leading-relaxed font-normal">
+            For programmes supporting Build stage founders across all tracks
+          </p>
+
+          {/* 3 tabs grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Better programme delivery</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">Structured engagement, measurable progress.</p>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Your network, better timed</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">The right connections at the right moment.</p>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Cohort-wide outcomes</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">More founders moving forward, faster.</p>
             </div>
           </div>
 
-          {/* Card 2: Interactive Stepper */}
-          <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
-            <div className="mb-8">
-              <h3 className="text-[20px] font-bold text-[#2F4A2F] mb-2" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                Builder T-Sprints
-              </h3>
-              <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                Structured sprint tracks designed to help startups validate, launch, acquire customers, improve monetisation, and build the systems required for sustainable growth.
-              </p>
+          <div className="space-y-8">
+            {/* Card 1: Growth Strategy */}
+            <div className="border border-gray-100 rounded-2xl p-6 md:p-8 bg-white hover:shadow-md transition-shadow relative overflow-hidden group flex flex-col justify-between">
+              {/* Background shape element_1.png */}
+              <img
+                src="/Offering/element_1.png"
+                alt=""
+                className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
+              />
+
+              <div className="space-y-4">
+                <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                  Growth Strategy T-Sprints
+                </h3>
+                <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
+                  Strategic working sessions that help startups identify growth priorities, validate opportunities, and build a focused roadmap for the next stage of growth.
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-4 pt-2">
+                  {/* Feature Box 1 */}
+                  <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
+                    <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                      <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap Analysis</h4>
+                      <p className="text-[11px] text-gray-400 font-normal">Goal setting, key actionables, key insights</p>
+                      <p className="text-[10px] text-gray-400 font-light mt-1">1 T-Sprints &nbsp;&nbsp; 2 hrs</p>
+                    </div>
+                  </div>
+
+                  {/* Feature Box 2 */}
+                  <div className="flex gap-4 items-center bg-[#FAFDF6] border border-[#EEF8E6]/40 p-4 rounded-xl">
+                    <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                      <img src="/Offering/element_3.png" alt="" className="w-6 h-6 object-contain" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <h4 className="text-[13px] font-bold text-[#1a1a1a]">Gap + Opportunity Analysis</h4>
+                      <p className="text-[11px] text-gray-400 font-normal">Goal setting, actionables, insights, business & market potential</p>
+                      <p className="text-[10px] text-gray-400 font-light mt-1">2 T-Sprints &nbsp;&nbsp; 15 days</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 relative z-10">
+                <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                  Get in touch →
+                </Link>
+              </div>
             </div>
 
-            {/* Steps Timeline Navigation */}
-            <div className="relative mb-10 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200">
-              {/* Dotted horizontal connector line */}
-              <div className="absolute top-[26px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
+            {/* Card 2: Interactive Stepper */}
+            <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 shadow-sm hover:shadow-md transition-shadow">
+              <div className="mb-8">
+                <h3 className="text-[20px] font-bold text-[#2F4A2F] mb-2" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                  Builder T-Sprints
+                </h3>
+                <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
+                  Structured sprint tracks designed to help startups validate, launch, acquire customers, improve monetisation, and build the systems required for sustainable growth.
+                </p>
+              </div>
 
-              <div className="flex md:justify-between items-start gap-8 min-w-[760px] px-2 relative z-10">
-                {partnerStageSteps.map((step, idx) => {
-                  const isActive = activeStepIndex === idx;
-                  return (
-                    <button
-                      key={step.id}
-                      onClick={() => setActiveStepIndex(idx)}
-                      className="flex flex-col items-center text-center focus:outline-none group/btn cursor-pointer w-24 shrink-0"
-                    >
-                      {/* Step Circle */}
-                      <div
-                        className={`w-[52px] h-[52px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${isActive
+              {/* Steps Timeline Navigation */}
+              <div className="relative mb-10 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-gray-200">
+                {/* Dotted horizontal connector line */}
+                <div className="absolute top-[26px] left-10 right-10 h-0.5 border-t-2 border-dashed border-gray-100 -z-0 hidden md:block" />
+
+                <div className="flex md:justify-between items-start gap-8 min-w-[760px] px-2 relative z-10">
+                  {partnerStageSteps.map((step, idx) => {
+                    const isActive = activeStepIndex === idx;
+                    return (
+                      <button
+                        key={step.id}
+                        onClick={() => setActiveStepIndex(idx)}
+                        className="flex flex-col items-center text-center focus:outline-none group/btn cursor-pointer w-24 shrink-0"
+                      >
+                        {/* Step Circle */}
+                        <div
+                          className={`w-[52px] h-[52px] rounded-full flex items-center justify-center font-bold text-[13px] transition-all duration-300 ${isActive
                             ? 'bg-[#2F4A2F] text-white shadow-sm ring-4 ring-[#2F4A2F]/10'
                             : 'bg-white border border-gray-200 text-gray-500 hover:border-[#2F4A2F] hover:text-[#2F4A2F]'
-                          }`}
-                      >
-                        {step.id}
-                      </div>
+                            }`}
+                        >
+                          {step.id}
+                        </div>
 
-                      {/* Labels */}
-                      <span
-                        className={`text-[12.5px] font-bold mt-3 transition-colors duration-200 ${isActive ? 'text-[#2F4A2F]' : 'text-[#1a1a1a]'
-                          }`}
-                      >
-                        {step.title}
-                      </span>
-                      <span className="text-[11px] text-gray-400 mt-0.5 font-normal">
-                        {step.shortLabel}
-                      </span>
-                    </button>
-                  );
-                })}
+                        {/* Labels */}
+                        <span
+                          className={`text-[12.5px] font-bold mt-3 transition-colors duration-200 ${isActive ? 'text-[#2F4A2F]' : 'text-[#1a1a1a]'
+                            }`}
+                        >
+                          {step.title}
+                        </span>
+                        <span className="text-[11px] text-gray-400 mt-0.5 font-normal">
+                          {step.shortLabel}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
 
-            {/* Active Step Details Panel */}
-            <div className="bg-[#FAFDF6] border border-[#EEF8E6]/60 rounded-xl p-6 md:p-8 transition-all duration-300">
-              <div className="grid md:grid-cols-[1fr_1.5fr_1.2fr] gap-6 md:gap-8 items-start">
-                {/* Column 1: Title/Desc */}
-                <div className="space-y-3">
-                  <h4 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                    {activeStep.title}
-                  </h4>
-                  <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                    {activeStep.desc}
-                  </p>
-                  <div className="pt-1">
-                    <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                      Get in touch →
-                    </Link>
+              {/* Active Step Details Panel */}
+              <div className="bg-[#FAFDF6] border border-[#EEF8E6]/60 rounded-xl p-6 md:p-8 transition-all duration-300">
+                <div className="grid md:grid-cols-[1fr_1.5fr_1.2fr] gap-6 md:gap-8 items-start">
+                  {/* Column 1: Title/Desc */}
+                  <div className="space-y-3">
+                    <h4 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                      {activeStep.title}
+                    </h4>
+                    <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
+                      {activeStep.desc}
+                    </p>
+                    <div className="pt-1">
+                      <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                        Get in touch →
+                      </Link>
+                    </div>
                   </div>
-                </div>
 
-                {/* Column 2: What We Build */}
-                <div className="space-y-2">
-                  <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block">
-                    WHAT WE BUILD
-                  </span>
-                  <p className="text-[13px] text-gray-600 leading-relaxed font-normal">
-                    {activeStep.whatWeBuild}
-                  </p>
-                </div>
-
-                {/* Column 3: Duration info */}
-                <div className="space-y-4">
-                  <div>
-                    <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block mb-1">
-                      DURATION
+                  {/* Column 2: What We Build */}
+                  <div className="space-y-2">
+                    <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block">
+                      WHAT WE BUILD
                     </span>
-                    <p className="text-[14px] text-[#2F4A2F] font-bold">
-                      {activeStep.duration}
+                    <p className="text-[13px] text-gray-600 leading-relaxed font-normal">
+                      {activeStep.whatWeBuild}
                     </p>
                   </div>
-                  <div>
-                    <p className="text-[12.5px] text-gray-500 font-normal leading-relaxed">
-                      {activeStep.delivery}
-                    </p>
+
+                  {/* Column 3: Duration info */}
+                  <div className="space-y-4">
+                    <div>
+                      <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block mb-1">
+                        DURATION
+                      </span>
+                      <p className="text-[14px] text-[#2F4A2F] font-bold">
+                        {activeStep.duration}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-[12.5px] text-gray-500 font-normal leading-relaxed">
+                        {activeStep.delivery}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
       </div>
 
       {/* ─── Section 03: VCs & MSME Facilitators ─── */}
       <div className="bg-[#FBFDF9] w-full">
-      <section className="max-w-7xl mx-auto px-6 py-20 relative overflow-hidden">
-        <div className="flex items-center gap-3 mb-2">
-          <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
-            03
+        <section className="max-w-7xl mx-auto px-6 py-20 relative overflow-hidden">
+          <div className="flex items-center gap-3 mb-2">
+            <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
+              03
+            </div>
+            <h2 className="text-[28px] md:text-[32px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+              VCs & MSME Facilitators
+            </h2>
           </div>
-          <h2 className="text-[28px] md:text-[32px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-            VCs & MSME Facilitators
-          </h2>
-        </div>
-        <p className="text-[13.5px] text-gray-500 max-w-2xl mb-8 leading-relaxed font-normal">
-          For programmes supporting Grow and Scale stage founders
-        </p>
+          <p className="text-[13.5px] text-gray-500 max-w-2xl mb-8 leading-relaxed font-normal">
+            For programmes supporting Grow and Scale stage founders
+          </p>
 
-        {/* 3 tabs grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Portfolio Outcomes</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">More startups moving forward, faster.</p>
+          {/* 3 tabs grid */}
+          <div className="grid md:grid-cols-3 gap-6 mb-10">
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Portfolio Outcomes</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">More startups moving forward, faster.</p>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Structured Support at Scale</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">Consistent growth support across every startup.</p>
+            </div>
+            <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
+              <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Your Network, Better Timed</h4>
+              <p className="text-[12.5px] text-gray-500 font-normal">The right connections at the right moment.</p>
+            </div>
           </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Structured Support at Scale</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">Consistent growth support across every startup.</p>
-          </div>
-          <div className="bg-white border border-gray-100 rounded-xl p-5 text-center shadow-sm">
-            <h4 className="text-[14px] font-bold text-[#2F4A2F] mb-1" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>Your Network, Precisely Deployed</h4>
-            <p className="text-[12.5px] text-gray-500 font-normal">The right connections at the right moment.</p>
-          </div>
-        </div>
 
-        {/* Dynamic Stage Toggle */}
-        <div className="mb-8">
-          <div className="flex border border-gray-100 rounded-2xl overflow-hidden max-w-lg shadow-sm bg-white">
-            <button
-              onClick={() => setActiveToggleSection(1)}
-              className={`flex-1 text-left px-6 py-4 font-semibold text-[13px] transition-all flex items-center gap-3 cursor-pointer ${
-                activeToggleSection === 1
-                  ? 'bg-[#2F4A2F] text-white shadow-sm'
-                  : 'bg-white text-gray-500 hover:text-[#2F4A2F]'
-              }`}
-            >
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-[12px] ${
-                activeToggleSection === 1 ? 'bg-white text-[#2F4A2F]' : 'bg-gray-100 text-[#2F4A2F]'
-              }`}>
-                1
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-[14px] font-bold">Grow Stage</span>
-                <span className={`text-[11px] font-normal ${activeToggleSection === 1 ? 'text-white/80' : 'text-gray-400'}`}>2 Cr – 20 Cr</span>
-              </div>
-            </button>
-            <button
-              onClick={() => setActiveToggleSection(2)}
-              className={`flex-1 text-left px-6 py-4 font-semibold text-[13px] transition-all flex items-center gap-3 cursor-pointer ${
-                activeToggleSection === 2
-                  ? 'bg-[#2F4A2F] text-white shadow-sm'
-                  : 'bg-white text-gray-500 hover:text-[#2F4A2F]'
-              }`}
-            >
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-[12px] ${
-                activeToggleSection === 2 ? 'bg-white text-[#2F4A2F]' : 'bg-gray-100 text-[#2F4A2F]'
-              }`}>
-                2
-              </div>
-              <div className="flex flex-col text-left">
-                <span className="text-[14px] font-bold">Scale Stage</span>
-                <span className={`text-[11px] font-normal ${activeToggleSection === 2 ? 'text-white/80' : 'text-gray-400'}`}>20 Cr – 100 Cr</span>
-              </div>
-            </button>
+          {/* Dynamic Stage Toggle */}
+          <div className="mb-8">
+            <div className="flex border border-gray-100 rounded-2xl overflow-hidden max-w-lg shadow-sm bg-white">
+              <button
+                onClick={() => setActiveToggleSection(1)}
+                className={`flex-1 text-left px-6 py-4 font-semibold text-[13px] transition-all flex items-center gap-3 cursor-pointer ${activeToggleSection === 1
+                    ? 'bg-[#2F4A2F] text-white shadow-sm'
+                    : 'bg-white text-gray-500 hover:text-[#2F4A2F]'
+                  }`}
+              >
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-[12px] ${activeToggleSection === 1 ? 'bg-white text-[#2F4A2F]' : 'bg-gray-100 text-[#2F4A2F]'
+                  }`}>
+                  1
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[14px] font-bold">Grow Stage</span>
+                  <span className={`text-[11px] font-normal ${activeToggleSection === 1 ? 'text-white/80' : 'text-gray-400'}`}>2 Cr – 20 Cr</span>
+                </div>
+              </button>
+              <button
+                onClick={() => setActiveToggleSection(2)}
+                className={`flex-1 text-left px-6 py-4 font-semibold text-[13px] transition-all flex items-center gap-3 cursor-pointer ${activeToggleSection === 2
+                    ? 'bg-[#2F4A2F] text-white shadow-sm'
+                    : 'bg-white text-gray-500 hover:text-[#2F4A2F]'
+                  }`}
+              >
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-[12px] ${activeToggleSection === 2 ? 'bg-white text-[#2F4A2F]' : 'bg-gray-100 text-[#2F4A2F]'
+                  }`}>
+                  2
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[14px] font-bold">Scale Stage</span>
+                  <span className={`text-[11px] font-normal ${activeToggleSection === 2 ? 'text-white/80' : 'text-gray-400'}`}>20 Cr – 100 Cr</span>
+                </div>
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Toggle-dependent offerings content */}
-        <div className="space-y-8">
-          {activeToggleSection === 1 ? (
-            <>
-              {/* Early Stage Offerings */}
-              {/* Card 1: Growth Strategy */}
-              <div className="relative bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300 overflow-hidden group">
-                <img
-                  src="/Offering/element_2.png"
-                  alt=""
-                  className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-                />
+          {/* Toggle-dependent offerings content */}
+          <div className="space-y-8">
+            {activeToggleSection === 1 ? (
+              <>
+                {/* Early Stage Offerings */}
+                {/* Card 1: Growth Strategy */}
+                <div className="relative bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300 overflow-hidden group">
+                  <img
+                    src="/Offering/element_2.png"
+                    alt=""
+                    className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
+                  />
 
-                <div className="grid md:grid-cols-[1fr_auto] gap-6 items-center">
-                  <div className="max-w-2xl space-y-3 relative z-10">
+                  <div className="grid md:grid-cols-[1fr_auto] gap-6 items-center">
+                    <div className="max-w-2xl space-y-3 relative z-10">
+                      <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block">
+                        ANNUALLY + QUATERLY
+                      </span>
+                      <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                        Growth Strategy T-Sprints
+                      </h3>
+                      <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
+                        Focused T-Sprints that help leadership teams identify growth opportunities, align priorities, and build the systems required to scale with confidence.
+                      </p>
+                      <div className="pt-2">
+                        <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                          Get in touch →
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Badge */}
+                    <div className="flex items-center justify-center md:justify-end shrink-0 relative z-10">
+                      <div className="relative w-24 h-24 flex flex-col items-center justify-center rounded-full border border-gray-100 bg-white select-none shadow-sm">
+                        <span className="text-[26px] font-bold text-[#2F4A2F] leading-none">15</span>
+                        <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-1">T-Sprints</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 2: Builder Sprints Grid */}
+                <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+                    <div className="max-w-3xl">
+                      <h3 className="text-[20px] font-bold text-[#2F4A2F] mb-2" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                        Builder T-Sprints
+                      </h3>
+                      <p className="text-[13px] text-gray-500 font-normal leading-relaxed">
+                        Structured implementation suites across product, growth, pricing, operations, people, and new ventures — built to remove bottlenecks and create long-term business momentum.
+                      </p>
+                    </div>
+                    <div className="shrink-0">
+                      <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                        Get in touch →
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Suites Grid */}
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Suite 1 */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          Product Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Build a product organisation that can scale without constant founder involvement.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks • 9 Months
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Suite 2 */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon5.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          Market & Growth Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Design predictable growth systems that attract, convert, and retain the right customers.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks • 9 Months
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Suite 3 */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon4.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          Pricing & Monetisation Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Turn pricing into a growth lever with stronger positioning and higher customer value.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks • 9 Months
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Suite 4 */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon3.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          Process & Operations Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Replace operational bottlenecks with systems that keep the business moving.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks • 9 Months
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Suite 5 */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon2.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          People & Org Design Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Build the leadership structure, roles, and accountability needed for the next stage of growth.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks • 9 Months
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Suite 6 */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon1.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          New Product Builder & Growth
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Discover, validate, and launch new growth opportunities with confidence.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks • 9 Months
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Scale Stage Offerings */}
+                {/* Card 1: Fractional CRO */}
+                <div className="relative bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300 overflow-hidden group">
+                  <img
+                    src="/Offering/element_2.png"
+                    alt=""
+                    className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
+                  />
+
+                  <div className="grid md:grid-cols-[1fr_auto] gap-6 items-center">
+                    <div className="max-w-2xl space-y-3 relative z-10">
+                      <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block">
+                        ACTING AS FRACTIONAL CRO
+                      </span>
+                      <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                        Growth Strategy T-Sprints
+                      </h3>
+                      <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
+                        Full leadership team strategic growth alignment. Growth blueprint with 100% of the team aligned to build a scalable engine to grow for a full year.
+                      </p>
+                      <div className="pt-2">
+                        <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                          Get in touch →
+                        </Link>
+                      </div>
+                    </div>
+
+                    {/* Badge */}
+                    <div className="flex items-center justify-center md:justify-end shrink-0 relative z-10">
+                      <div className="relative w-24 h-24 flex flex-col items-center justify-center rounded-full border border-gray-100 bg-white select-none shadow-sm">
+                        <span className="text-[26px] font-bold text-[#2F4A2F] leading-none">15</span>
+                        <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-1">T-Sprints</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 2: Scale Suites Grid */}
+                <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
+                    <div className="max-w-3xl">
+                      <h3 className="text-[20px] font-bold text-[#2F4A2F] mb-2" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                        Builder T-Sprints
+                      </h3>
+                      <p className="text-[13px] text-gray-500 font-normal leading-relaxed">
+                        Bespoke operational and technical suites targeting large-scale monetization and distribution.
+                      </p>
+                    </div>
+                    <div className="shrink-0">
+                      <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
+                        Get in touch →
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Suites Grid */}
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {/* Fractional CRO */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          Fractional CRO Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Full alignment of sales, marketing, and product roadmaps to achieve scalable annual recurring revenue growth.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks &nbsp; 9 months
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Bespoke Scale */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon2.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          Bespoke Scale Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Focused co-building on complex growth bottlenecks, expanding distribution channels, and operational scale.
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks &nbsp; 9 months
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Pricing Architecture */}
+                    <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
+                      <div className="space-y-4">
+                        <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
+                          <img src="/Offering/icon4.png" alt="" className="w-6 h-6 object-contain" />
+                        </div>
+                        <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
+                          Pricing Architecture Suite
+                        </h4>
+                        <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
+                          Restructuring pricing tiers, monetization loops, and expansion pathways to optimize lifetime value (LTV).
+                        </p>
+                      </div>
+                      <div className="border-t border-gray-50 pt-3 mt-4">
+                        <span className="text-[11px] text-gray-400 block font-light">
+                          60 Blocks &nbsp; 9 months
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Card 3: Bespoke Moonshot */}
+                <div className="relative bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300 overflow-hidden group">
+                  <img
+                    src="/Offering/element_3.png"
+                    alt=""
+                    className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
+                  />
+
+                  <div className="max-w-3xl space-y-4 relative z-10">
                     <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block">
-                      ANNUALLY + QUATERLY
+                      BESPOKE
                     </span>
                     <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                      Growth Strategy T-Sprints
+                      Moonshot Engagements
                     </h3>
                     <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                      Focused T-Sprints that help leadership teams identify growth opportunities, align priorities, and build the systems required to scale with confidence.
+                      Pursuing business model changes with no existing playbook. We use the first principles of building the strategy, the systems, and the execution path from scratch. Every engagement is unique by design.
                     </p>
                     <div className="pt-2">
                       <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
@@ -829,309 +1133,11 @@ export default function PartnerProgram() {
                       </Link>
                     </div>
                   </div>
-
-                  {/* Badge */}
-                  <div className="flex items-center justify-center md:justify-end shrink-0 relative z-10">
-                    <div className="relative w-24 h-24 flex flex-col items-center justify-center rounded-full border border-gray-100 bg-white select-none shadow-sm">
-                      <span className="text-[26px] font-bold text-[#2F4A2F] leading-none">15</span>
-                      <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-1">T-Sprints</span>
-                    </div>
-                  </div>
                 </div>
-              </div>
-
-              {/* Card 2: Builder Sprints Grid */}
-              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
-                  <div className="max-w-3xl">
-                    <h3 className="text-[20px] font-bold text-[#2F4A2F] mb-2" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                      Builder T-Sprints
-                    </h3>
-                    <p className="text-[13px] text-gray-500 font-normal leading-relaxed">
-                      Structured implementation suites across product, growth, pricing, operations, people, and new ventures — built to remove bottlenecks and create long-term business momentum.
-                    </p>
-                  </div>
-                  <div className="shrink-0">
-                    <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                      Get in touch →
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Suites Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Suite 1 */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        Product Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        Core product systems operational. Team running independently with 30% reduction in founder involvement.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Suite 2 */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon5.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        Market & Growth Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        2–3 growth channels activated. CAC and conversion benchmarks established.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Suite 3 */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon4.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        Pricing & Monetisation Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        Revised pricing architecture implemented. Revenue per customer improved 20–30%.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Suite 4 */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon3.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        Process & Operations Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        Key SOPs built, bottlenecks removed. Execution no longer dependent on founder.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Suite 5 */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon2.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        People & Org Design Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        Org structure redesigned for next growth phase. KRAs live across the leadership team.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Suite 6 */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon1.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        New Product Builder & Growth
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        New product launched. Validated demand from 10+ paying customers.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Scale Stage Offerings */}
-              {/* Card 1: Fractional CRO */}
-              <div className="relative bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300 overflow-hidden group">
-                <img
-                  src="/Offering/element_2.png"
-                  alt=""
-                  className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-                />
-
-                <div className="grid md:grid-cols-[1fr_auto] gap-6 items-center">
-                  <div className="max-w-2xl space-y-3 relative z-10">
-                    <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block">
-                      ACTING AS FRACTIONAL CRO
-                    </span>
-                    <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                      Growth Strategy T-Sprints
-                    </h3>
-                    <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                      Full leadership team strategic growth alignment. Growth blueprint with 100% of the team aligned to build a scalable engine to grow for a full year.
-                    </p>
-                    <div className="pt-2">
-                      <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                        Get in touch →
-                      </Link>
-                    </div>
-                  </div>
-
-                  {/* Badge */}
-                  <div className="flex items-center justify-center md:justify-end shrink-0 relative z-10">
-                    <div className="relative w-24 h-24 flex flex-col items-center justify-center rounded-full border border-gray-100 bg-white select-none shadow-sm">
-                      <span className="text-[26px] font-bold text-[#2F4A2F] leading-none">15</span>
-                      <span className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mt-1">T-Sprints</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 2: Scale Suites Grid */}
-              <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300">
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-8">
-                  <div className="max-w-3xl">
-                    <h3 className="text-[20px] font-bold text-[#2F4A2F] mb-2" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                      Builder T-Sprints
-                    </h3>
-                    <p className="text-[13px] text-gray-500 font-normal leading-relaxed">
-                      Bespoke operational and technical suites targeting large-scale monetization and distribution.
-                    </p>
-                  </div>
-                  <div className="shrink-0">
-                    <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                      Get in touch →
-                    </Link>
-                  </div>
-                </div>
-
-                {/* Suites Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {/* Fractional CRO */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon6.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        Fractional CRO Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        Full alignment of sales, marketing, and product roadmaps to achieve scalable annual recurring revenue growth.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Bespoke Scale */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon2.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        Bespoke Scale Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        Focused co-building on complex growth bottlenecks, expanding distribution channels, and operational scale.
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Pricing Architecture */}
-                  <div className="border border-gray-100 rounded-xl p-5 hover:shadow-md hover:-translate-y-1 hover:border-[#EEF8E6] transition-all duration-300 flex flex-col justify-between">
-                    <div className="space-y-4">
-                      <div className="w-10 h-10 rounded border border-gray-100 bg-white flex items-center justify-center shrink-0">
-                        <img src="/Offering/icon4.png" alt="" className="w-6 h-6 object-contain" />
-                      </div>
-                      <h4 className="text-[15px] font-bold text-[#1a1a1a]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                        Pricing Architecture Suite
-                      </h4>
-                      <p className="text-[12.5px] text-gray-500 leading-relaxed font-normal">
-                        Restructuring pricing tiers, monetization loops, and expansion pathways to optimize lifetime value (LTV).
-                      </p>
-                    </div>
-                    <div className="border-t border-gray-50 pt-3 mt-4">
-                      <span className="text-[11px] text-gray-400 block font-light">
-                        60 Blocks &nbsp; 9 months
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Card 3: Bespoke Moonshot */}
-              <div className="relative bg-white border border-gray-100 rounded-2xl p-6 md:p-8 hover:shadow-md transition-all duration-300 overflow-hidden group">
-                <img
-                  src="/Offering/element_3.png"
-                  alt=""
-                  className="absolute right-0 bottom-0 pointer-events-none select-none w-24 h-24 object-contain opacity-75 group-hover:scale-105 transition-transform duration-500 translate-x-2 translate-y-2"
-                />
-
-                <div className="max-w-3xl space-y-4 relative z-10">
-                  <span className="text-gray-400 text-[10px] font-bold tracking-widest uppercase block">
-                    BESPOKE
-                  </span>
-                  <h3 className="text-[20px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
-                    Moonshot Engagements
-                  </h3>
-                  <p className="text-[13px] text-gray-500 leading-relaxed font-normal">
-                    Pursuing business model changes with no existing playbook. We use the first principles of building the strategy, the systems, and the execution path from scratch. Every engagement is unique by design.
-                  </p>
-                  <div className="pt-2">
-                    <Link to="/contact" className="text-[#E29A52] text-[13px] font-semibold hover:text-[#c7803e] transition-colors inline-flex items-center gap-1">
-                      Get in touch →
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </section>
+              </>
+            )}
+          </div>
+        </section>
       </div>
 
       {/* ─── Final CTA Section ─── */}

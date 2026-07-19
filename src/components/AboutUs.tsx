@@ -426,6 +426,119 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+
+      {/* ─── In the Press Section ─── */}
+      <section className="bg-[#FBFDF9] py-20 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Section Header */}
+          <div className="mb-12">
+            <span className="text-[#E29A52] text-[11px] font-semibold tracking-[0.2em] uppercase">
+              ✦ MEDIA & COVERAGE
+            </span>
+            <div className="mt-3">
+              <h2
+                className="text-[36px] md:text-[44px] text-[#1a1a1a] leading-[1.15]"
+                style={{ fontFamily: "'PT Serif', Georgia, serif" }}
+              >
+                In the <span className="text-[#2F4A2F] italic" style={{ fontStyle: 'italic' }}>press.</span>
+              </h2>
+            </div>
+          </div>
+
+          {/* Press Cards Grid */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Card 1 */}
+            <a
+              href="https://www.thinkingspree.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300"
+            >
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="/AboutUs/press1.png"
+                  alt="From Idea to Prototype"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <span className="text-[11px] text-[#E29A52] font-semibold tracking-wider uppercase">
+                  Featured
+                </span>
+                <h4
+                  className="text-[16px] font-bold text-[#1a1a1a] leading-snug group-hover:text-[#2F4A2F] transition-colors"
+                  style={{ fontFamily: "'PT Serif', Georgia, serif" }}
+                >
+                  From Idea to Prototype – In Just 90 Days
+                </h4>
+                <p className="text-[12px] text-gray-400 font-medium">
+                  Jun 23, 2025
+                </p>
+              </div>
+            </a>
+
+            {/* Card 2 */}
+            <a
+              href="https://www.thinkingspree.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300"
+            >
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="/AboutUs/press2.png"
+                  alt="From Custom Deployments to a Scalable Robotics Product"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <span className="text-[11px] text-[#E29A52] font-semibold tracking-wider uppercase">
+                  Featured
+                </span>
+                <h4
+                  className="text-[16px] font-bold text-[#1a1a1a] leading-snug group-hover:text-[#2F4A2F] transition-colors"
+                  style={{ fontFamily: "'PT Serif', Georgia, serif" }}
+                >
+                  From Custom Deployments to a Scalable Robotics Product
+                </h4>
+                <p className="text-[12px] text-gray-400 font-medium">
+                  Jun 18, 2025
+                </p>
+              </div>
+            </a>
+
+            {/* Card 3 */}
+            <a
+              href="https://www.thinkingspree.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg transition-all duration-300"
+            >
+              <div className="h-48 overflow-hidden">
+                <img
+                  src="/AboutUs/press3.png"
+                  alt="Revolutionizing the Global Strategy Business"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="p-6 space-y-3">
+                <span className="text-[11px] text-[#E29A52] font-semibold tracking-wider uppercase">
+                  Featured
+                </span>
+                <h4
+                  className="text-[16px] font-bold text-[#1a1a1a] leading-snug group-hover:text-[#2F4A2F] transition-colors"
+                  style={{ fontFamily: "'PT Serif', Georgia, serif" }}
+                >
+                  Revolutionizing the Global Strategy Business
+                </h4>
+                <p className="text-[12px] text-gray-400 font-medium">
+                  Jan 9, 2023
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -4,19 +4,19 @@ const stageData = [
   {
     stage: 'Early Stage',
     range: 'Pre-Seed to 2 Cr',
-    cardBg: 'bg-[#2F4A2F]',
-    borderColor: 'border-transparent',
-    textColor: 'text-white',
-    subTextColor: 'text-white/70',
-    titleColor: 'text-[#8a9e7b]',
+    cardBg: 'bg-white',
+    borderColor: 'border border-gray-100 shadow-sm',
+    textColor: 'text-[#1a1a1a]',
+    subTextColor: 'text-gray-500',
+    titleColor: 'text-[#2F4A2F]',
     desc: 'From idea to first revenue — validation, product, GTM, and funding.',
-    boxBg: 'bg-[#374E37]',
-    boxTitleColor: 'text-white',
+    boxBg: 'bg-[#FAFDF6]',
+    boxTitleColor: 'text-[#1a1a1a]',
     boxBadgeColor: 'text-[#E29A52]',
-    watermarkColor: 'text-[#8a9e7b]/[0.06]',
+    watermarkColor: 'text-[#EEF8E6]/40',
     offerings: [
       {
-        name: 'Growth Strategy T-Sprints',
+        name: 'Strategy T-Sprints',
         badge: 'Clarity',
         desc: 'Founder-led clarity on priorities, market position, and what to build next.',
       },
@@ -32,21 +32,22 @@ const stageData = [
       },
     ],
     cta: 'Explore offerings →',
+    linkTo: '/offerings',
     downloadCta: 'Download Brochure',
   },
   {
     stage: 'Growth Stage',
     range: '2 Cr and above',
     cardBg: 'bg-white',
-    borderColor: 'border border-gray-100',
+    borderColor: 'border border-gray-100 shadow-sm',
     textColor: 'text-[#1a1a1a]',
     subTextColor: 'text-gray-500',
-    titleColor: 'text-[#8a9e7b]',
+    titleColor: 'text-[#2F4A2F]',
     desc: 'From traction to scale — strategy, systems, and organisational clarity.',
-    boxBg: 'bg-[#EEF8E6]',
+    boxBg: 'bg-[#FAFDF6]',
     boxTitleColor: 'text-[#1a1a1a]',
     boxBadgeColor: 'text-[#E29A52]',
-    watermarkColor: 'text-[#EEF8E6]/60',
+    watermarkColor: 'text-[#EEF8E6]/40',
     offerings: [
       {
         name: 'Growth Strategy T-Sprints',
@@ -54,7 +55,7 @@ const stageData = [
         desc: 'Full leadership team strategic reset — shared priorities, live Growth Map, quarterly recalibration.',
       },
       {
-        name: 'Builder T-Sprints',
+        name: 'System Builders T-Sprints',
         badge: '6 Suites',
         desc: 'Deep functional interventions across product, market, pricing, operations, people, and new growth.',
       },
@@ -65,6 +66,7 @@ const stageData = [
       },
     ],
     cta: 'Explore offerings →',
+    linkTo: '/offerings#growth-stage',
     downloadCta: 'Download Case Study',
   },
 ];
@@ -78,7 +80,7 @@ export default function ForGrowth() {
           <span className="text-[#E29A52] text-[11px] font-semibold tracking-widest uppercase">
             ✦ HOW WE WORK
           </span>
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
+          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8">
             <div>
               <h2 className="mt-3 text-[36px] md:text-[44px] text-[#1a1a1a] leading-tight" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>
                 For growth -
@@ -90,9 +92,22 @@ export default function ForGrowth() {
                 2Cr to Pre-IPO
               </h2>
             </div>
-            <p className="mt-4 text-[14px] text-gray-500 max-w-xl leading-relaxed">
-              Every engagement runs through T-Sprints — Thinking Spree's proprietary work format. Select your stage.
-            </p>
+            <div className="flex-1 max-w-xl space-y-4">
+              <p className="text-[14px] text-gray-500 leading-relaxed">
+                Every engagement runs through T-Sprints — Thinking Spree's proprietary work format. Select your stage.
+              </p>
+              <div className="border-t border-gray-100 pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <span className="text-[13px] text-gray-500 font-medium">
+                  How we collaborate with ecosystem partners
+                </span>
+                <Link
+                  to="/partner-program"
+                  className="inline-flex items-center text-[12.5px] font-semibold text-[#2F4A2F] hover:text-[#E29A52] transition-colors gap-1 whitespace-nowrap"
+                >
+                  Plug us in &rarr;
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -119,13 +134,12 @@ export default function ForGrowth() {
               <div className="relative z-10 space-y-4">
                 <div className="flex items-baseline gap-3">
                   <h3
-                    className="text-[28px] font-bold text-[#91C491] leading-none"
+                    className={`text-[28px] font-bold ${stage.titleColor} leading-none`}
                     style={{ fontFamily: "'PT Serif', Georgia, serif" }}
                   >
                     {stage.stage}
                   </h3>
-                  <span className={`text-[12px] font-medium ${stage.cardBg === 'bg-[#2F4A2F]' ? 'text-white/50' : 'text-gray-400'
-                    }`}>
+                  <span className="text-[12px] font-medium text-gray-400">
                     {stage.range}
                   </span>
                 </div>
@@ -162,7 +176,7 @@ export default function ForGrowth() {
               {/* CTAs */}
               <div className="relative z-10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-between pt-2 mt-auto w-full">
                 <Link
-                  to="/offerings"
+                  to={stage.linkTo || "/offerings"}
                   className="text-[13px] font-semibold text-[#E29A52] hover:text-[#d98544] transition-colors text-center sm:text-left"
                 >
                   {stage.cta}
