@@ -247,7 +247,7 @@ export default function PartnerProgram() {
                 to="/contact"
                 className="bg-[#2F4A2F] text-white text-[13px] font-semibold px-6 py-3.5 rounded hover:bg-[#1F3A1F] transition-colors inline-block shadow-sm"
               >
-                Become a Partner
+                Plug Us In
               </Link>
             </div>
           </div>
@@ -406,7 +406,7 @@ export default function PartnerProgram() {
       </section>
 
       {/* ─── Section 01: Universities & Institutions ─── */}
-      <div className="bg-[#FBFDF9] w-full">
+      <div id="universities" className="bg-[#FBFDF9] w-full">
         <section className="max-w-7xl mx-auto px-6 py-20">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
@@ -553,7 +553,7 @@ export default function PartnerProgram() {
         </section>
 
         {/* ─── Section 02: Incubators & Accelerators ─── */}
-        <section className="max-w-7xl mx-auto px-6 py-20 bg-white relative overflow-hidden">
+        <section id="incubators-accelerators" className="max-w-7xl mx-auto px-6 py-20 bg-white relative overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">
               02
@@ -737,7 +737,7 @@ export default function PartnerProgram() {
       </div>
 
       {/* ─── Section 03: VCs & MSME Facilitators ─── */}
-      <div className="bg-[#FBFDF9] w-full">
+      <div id="vcs-ecosystem" className="bg-[#FBFDF9] w-full">
         <section className="max-w-7xl mx-auto px-6 py-20 relative overflow-hidden">
           <div className="flex items-center gap-3 mb-2">
             <div className="w-8 h-8 rounded bg-[#EAF5E5] text-[#2F4A2F] flex items-center justify-center font-bold text-[13px]">

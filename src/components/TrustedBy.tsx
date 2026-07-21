@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function TrustedBy() {
   // Build arrays from the actual images in the public folder
   const startupImages = Array.from({ length: 26 }, (_, i) => ({
@@ -16,7 +18,7 @@ export default function TrustedBy() {
         <div className="flex flex-col md:flex-row gap-8 md:gap-12">
           {/* Left text */}
           <div className="shrink-0 flex items-center">
-            <p className="text-[12px] text-gray-800 font-medium leading-relaxed max-w-[200px]">
+            <p className="text-[13px] text-gray-800 font-medium leading-relaxed max-w-[200px]">
               Trusted by 1000+ startups and accelerators worldwide.
             </p>
           </div>
@@ -48,9 +50,11 @@ export default function TrustedBy() {
 
             {/* PARTNERS strip */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
-              <span className="text-[10px] font-semibold text-gray-400 tracking-widest uppercase shrink-0 w-16">
-                Partners
-              </span>
+              <div className="flex items-center justify-between sm:justify-start gap-3 shrink-0">
+                <span className="text-[10px] font-semibold text-gray-400 tracking-widest uppercase w-16">
+                  Partners
+                </span>
+              </div>
               <div className="overflow-hidden flex-1 [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
                 <div className="flex items-center gap-10 md:gap-12 animate-marquee-right w-max">
                   {/* Double the images for seamless loop */}
@@ -64,6 +68,15 @@ export default function TrustedBy() {
                   ))}
                 </div>
               </div>
+              <Link
+                to="/partner-program"
+                className="text-[#E29A52] hover:text-[#d98544] text-[13px] font-semibold shrink-0 inline-flex items-center gap-1.5 hover:underline underline-offset-2 transition-colors self-start sm:self-center"
+              >
+                Collaborate with us
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M3 7h8M7 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
             </div>
           </div>
         </div>

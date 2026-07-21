@@ -26,6 +26,7 @@ import BusyVsBuilding from './components/BusyVsBuilding';
 import ForGrowth from './components/ForGrowth';
 import BusinessImpact from './components/BusinessImpact';
 import CaseStudies from './components/CaseStudies';
+import Testimonials from './components/Testimonials';
 import FinalCTA from './components/FinalCTA';
 import Footer from './components/Footer';
 import GetInTouch from './components/GetInTouch';
@@ -64,6 +65,7 @@ function LandingPage() {
       <ForGrowth />
       <BusinessImpact />
       <CaseStudies />
+      <Testimonials />
       <FinalCTA />
     </>
   );

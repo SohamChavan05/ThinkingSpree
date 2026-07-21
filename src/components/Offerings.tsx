@@ -142,7 +142,7 @@ export default function Offerings() {
       </section>
 
       {/* ─── Early Stage Section ─── */}
-      <section className="max-w-7xl mx-auto px-6 pb-20">
+      <section id="early-stage" className="max-w-7xl mx-auto px-6 pb-20">
         {/* Section Title */}
         <div className="flex items-baseline gap-3 mb-8 border-b border-gray-100 pb-4">
           <h2 className="text-[28px] md:text-[32px] font-bold text-[#2F4A2F]" style={{ fontFamily: "'PT Serif', Georgia, serif" }}>

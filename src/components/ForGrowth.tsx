@@ -95,18 +95,7 @@ export default function ForGrowth() {
             <div className="flex-1 max-w-xl space-y-4">
               <p className="text-[14px] text-gray-500 leading-relaxed">
                 Every engagement runs through T-Sprints — Thinking Spree's proprietary work format. Select your stage.
-              </p>
-              <div className="border-t border-gray-100 pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                <span className="text-[13px] text-gray-500 font-medium">
-                  How we collaborate with ecosystem partners
-                </span>
-                <Link
-                  to="/partner-program"
-                  className="inline-flex items-center text-[12.5px] font-semibold text-[#2F4A2F] hover:text-[#E29A52] transition-colors gap-1 whitespace-nowrap"
-                >
-                  Plug us in &rarr;
-                </Link>
-              </div>
+              </p>    
             </div>
           </div>
         </div>
